@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>技术研发日报 · 每日动态</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#1f2328;--muted:#5b6573;
+  --line:#e3e7ec;--accent:#2f6feb;--shadow:0 1px 3px rgba(16,24,40,.06),0 6px 20px rgba(16,24,40,.05)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:14px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+.wrap{max-width:920px;margin:0 auto;padding:32px 20px 60px}
+header{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:26px 28px;margin-bottom:18px;box-shadow:var(--shadow)}
+h1{font-size:26px;margin:0 0 6px}
+.subtitle{color:var(--muted);font-size:12.5px;margin:0}
+.list{display:flex;flex-direction:column;gap:12px}
+.item{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:18px 22px;text-decoration:none;color:inherit;box-shadow:var(--shadow);
+  transition:border-color .15s,transform .15s}
+.item:hover{border-color:#9dc0ff;transform:translateY(-1px)}
+.date{font-size:13px;color:var(--accent);font-weight:600}
+.title{font-size:17px;font-weight:600;margin:3px 0 8px}
+.digest{color:var(--muted);font-size:13px;margin:0}
+.digest li{margin:3px 0}
+.digest ul{margin:4px 0 0;padding-left:18px}
+.empty{background:var(--card);border:1px dashed var(--line);border-radius:12px;
+  padding:40px;text-align:center;color:var(--muted)}
+footer{text-align:center;color:var(--muted);font-size:12px;margin-top:28px}
+@media(max-width:760px){.wrap{padding:16px 12px 40px}header,.item{padding:16px}h1{font-size:22px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><h1>技术研发日报</h1><p class="subtitle">每日 09:30 自动汇总 · GitHub / Hacker News / leijuan / Brendan Gregg · 共 11 期</p></header>
+<div class="list">
+<a class="item" href="./2026-11-18.html"><div class="date">2026-11-18</div><div class="title">技术研发日报 2026-11-18</div><ul class="digest"><li>旗舰模型同日换代，主打性价比：OpenAI 发布 GPT-6.2 Astra（复杂 Agent/科研/编程/3D，AA-3D 1318 Elo 登顶）与 Sol（成本约 Astra 1/5）；微软 Ignite 2026 一次发 7 款自研模型，MAI Code 2 达 GPT-6.1 Sol 约 98% 质量、40% 成本。</li><li>Java4Shell：OpenJDK 处理 Base64 存在远程代码执行漏洞（HN 482 分），由 Calif 安全团队借助 GPT-6 Cyber 发现——AI 辅助挖洞进入实战。</li></ul></a>
+<a class="item" href="./2026-11-17.html"><div class="date">2026-11-17</div><div class="title">技术研发日报 2026-11-17</div><ul class="digest"><li>国产大模型密集上新打起价格战：阿里 Qwen4-Max（2.4T、原生视觉、百万上下文）单任务成本降约 58%；腾讯 Hy4 flash（激活 12B）缓存命中输入仅 0.02 元/百万 token，价格为 Hy4 的 1/20。</li><li>AI Agent/Skills 工具链继续霸榜 GitHub：ag-ui 协议 +791★、univer AI Office SDK +1828★、NVIDIA SkillEvaluator +873★、阿里 open-code-review +951★、腾讯 LoopForge +1020★。</li></ul></a>
+<a class="item" href="./2026-11-15.html"><div class="date">2026-11-15</div><div class="title">技术研发日报 2026-11-15</div><ul class="digest"><li>AI 编程 Agent 工具链继续霸榜 GitHub：GoogleChrome/modern-web-guidance-src（+1,231★）、ChromeDevTools/chrome-devtools-mcp（+664★）、openai/codex-security（+595★）、alibaba/open-code-review（+893★）领跑。</li><li>华为云今日（11-15）上线 openPangu-2.1-Pro 旗舰开源模型，主攻鸿蒙 ArkTS 代码生成；AgentArts / CodeArts / OfficeAce 同步接入。</li></ul></a>
+<a class="item" href="./2026-11-14.html"><div class="date">2026-11-14</div><div class="title">技术研发日报 2026-11-14</div><ul class="digest"><li>AI Agent 工具链继续霸榜 GitHub：Google modern-web-guidance-src（+1925）、OpenAI codex-security（+751）、阿里 open-code-review（+215）全部围绕「让 coding agent 更懂最佳实践 / 更安全」展开。</li><li>NVIDIA 发布 GR00T 2 开源机器人基础模型（11-14）：支持跨本体技能迁移 + 物理世界建模；同日 OpenAI 推出 ChatGPT Wallet（agent 代付）、LangChain 以 $3B 估值 融资 $300M。</li></ul></a>
+<a class="item" href="./2026-11-13.html"><div class="date">2026-11-13</div><div class="title">技术研发日报 2026-11-13</div><ul class="digest"><li>英伟达突发 CEO 交接：黄仁勋辞任总裁/CEO/董事，CFO 科莱特·克雷斯（Colette Kress）任临时 CEO；消息登 HN 头条第 2880 分、2731 评论，市场关注算力资本开支与供货节奏（当日英伟达收跌 4.34%，AMD/博通上涨）。</li><li>谷歌 Gemini 4 Hydrogen 上线并接入全球搜索：默认档任务完成比 3.8 Flash 快 2.5 倍，Terminal-Bench 4.1 由 18.2%→57%；同步发布 Rust 1.100、Anthropic 启动 IPO（HN 805 分）。</li></ul></a>
+<a class="item" href="./2026-11-12.html"><div class="date">2026-11-12</div><div class="title">技术研发日报 2026-11-12</div><ul class="digest"><li>谷歌发布首款决策模型 Gemini Decision 1 + Decisions API：不逐 token 生成，单次前向传播对最多 1000 个封闭式问题（是/否、多选、打分）评分，输入仅 $0.10/百万 token（约 Flash-Lite 的 1/5），150–250ms 返回置信度，把&quot;分类/评分/选择&quot;从生成式流程里剥离。</li><li>AWS 发布 AWS Emulator（本地模拟 200+ 云服务），且公开称&quot;由 AI 智能体编写、团队未编写或审查代码&quot;——云工程首次把&quot;AI 端到端交付软件&quot;从实验室推到公开产品线，代码审查责任框架被重写。</li></ul></a>
+<a class="item" href="./2026-11-11.html"><div class="date">2026-11-11</div><div class="title">技术研发日报 2026-11-11</div></a>
+<a class="item" href="./2026-11-10.html"><div class="date">2026-11-10</div><div class="title">技术研发日报 2026-11-10</div><ul class="digest"><li>AI Agent 工具链继续霸榜：GitHub 今日热门前排几乎全是 Agent 相关——Anthropic skills（+1038）、meta astryx 设计系统（+3278）、Vercel agent-browser（+916）、OpenMausBot（+1587）；Anthropic 同日发布 Claude Fable 5.2 / Mythos 5.2，HN 上以 918 分登顶。</li><li>大模型密集发布余波仍在：腾讯混元 Hy4 正式版（11/4，首次支持视觉理解与电脑操作）、月之暗面 Kimi K3.1 Pro 权重放出（1.56TB / MXFP4）、DeepSeek V4.1 Flash Cyber、OpenAI GPT Image 2.6。</li></ul></a>
+<a class="item" href="./2026-11-09.html"><div class="date">2026-11-09</div><div class="title">技术研发日报 2026-11-09</div><ul class="digest"><li>AI Agent 工具链持续霸榜：Vercel agent-browser（Rust，今日 +815）、Anthropic skills（+792）、OpenMausBot（+1,439）等占据 GitHub 各语言榜单头部，Agent 基础设施成主流需求。</li><li>大模型进入&quot;安全 + 商业化&quot;双线：OpenAI 转向呼吁对最强 AI 实施强制安全监管，并上线 Target CPC 广告竞价；Anthropic 砸 34 亿美元自购发电设备，瓶颈从&quot;有没有卡&quot;滑向&quot;有没有电&quot;。</li></ul></a>
+<a class="item" href="./2026-11-08.html"><div class="date">2026-11-08</div><div class="title">技术研发日报 2026-11-08</div><ul class="digest"><li>AI Agent 工具链集中爆发：Cloudflare / Google / Anthropic / mattpocock 同日推 Agent Skills 仓库，vercel-labs/agent-browser、stablyai/orca、morluto/rea 等&quot;用 Agent 操作浏览器/逆向/编排&quot;的项目冲上 GitHub 榜首。</li><li>国产大模型密集开源：腾讯混元 Hy4、百度 ERNIE 5.5 Flash Base、Kimi K3.1 Pro、Thinking Machines Inkling 2 Small 同日上新或承诺开源，开放权重进入全球第一梯队。</li></ul></a>
+<a class="item" href="./2026-11-07.html"><div class="date">2026-11-07</div><div class="title">技术研发日报 2026-11-07</div></a>
+</div>
+<footer>每日动态 · 自动生成</footer>
+</div>
+</body>
+</html>

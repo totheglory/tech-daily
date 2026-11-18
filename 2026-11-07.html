@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>技术研发日报 2026-11-07</title>
+<style>
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --ink:#1f2328; --muted:#5b6573;
+  --line:#e3e7ec; --accent:#2f6feb; --accent-soft:#eaf1ff;
+  --shadow:0 1px 3px rgba(16,24,40,.06),0 6px 20px rgba(16,24,40,.05);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:14px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;}
+.wrap{max-width:1120px;margin:0 auto;padding:28px 20px 56px}
+h1{font-size:26px;margin:0 0 6px;letter-spacing:.3px}
+h2{font-size:19px;margin:0;padding:0 0 12px;border-bottom:1px solid var(--line)}
+h3{font-size:15px;margin:24px 0 10px;color:#30363d}
+.wrap>header{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:24px 26px;margin-bottom:18px;box-shadow:var(--shadow)}
+.subtitle{color:var(--muted);font-size:12.5px;margin:0}
+.note{color:var(--muted);font-size:12px;margin:12px 0 0;line-height:1.7}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:22px 26px;margin-bottom:18px;box-shadow:var(--shadow)}
+.hl{background:linear-gradient(180deg,#f0f6ff,#ffffff);border:1px solid #cfe0ff}
+.hl h2{border-bottom-color:#cfe0ff}
+ol.takeaways{margin:16px 0 0;padding-left:22px}
+ol.takeaways li{margin:9px 0}
+ol.takeaways li::marker{color:var(--accent);font-weight:700}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:#f7f9fb;color:#3b444f;font-weight:600;white-space:nowrap;font-size:12.5px}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:#fafbfd}
+td a{color:var(--accent);text-decoration:none;white-space:nowrap}
+td a:hover{text-decoration:underline}
+code{background:#f0f2f5;border-radius:4px;padding:1px 5px;font-size:12px;color:#b3306a}
+.tag{display:inline-block;font-size:11px;font-weight:600;line-height:1.5;
+  padding:1px 8px;border-radius:20px;white-space:nowrap;margin:1px 3px 1px 0}
+.tag-ai{background:#efe9ff;color:#6d3fd4}
+.tag-bigdata{background:#e6f0ff;color:#1d5fcb}
+.tag-cloud{background:#e2f5f4;color:#0e7c74}
+.tag-java{background:#ffede1;color:#c2571a}
+.tag-rust{background:#fbe9e7;color:#b23a2b}
+.tag-linux{background:#fff3d6;color:#9a6700}
+.tag-other{background:#eef1f4;color:#57606a}
+.stars{color:#b23a2b;font-weight:600}
+footer{text-align:center;color:var(--muted);font-size:12px;margin-top:26px}
+hr{border:0;border-top:1px dashed var(--line);margin:4px 0}
+@media(max-width:760px){
+  .wrap{padding:16px 12px 40px}
+  .card,header{padding:16px}
+  table{display:block;overflow-x:auto;white-space:nowrap}
+  h1{font-size:22px}
+}
+@media print{
+  body{background:#fff}.card,header{box-shadow:none;break-inside:avoid}
+  td a{color:#1f2328}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><h1>技术研发日报 2026-11-07</h1>
+</header>
+<p class="note">样例（手动跑通验证格式）。每日 09:30 自动生成，数据来自 GitHub Trending、Hacker News、leijuan(linux_china) 技术博客。</p>
+<p class="note">说明：x.com 强制登录无法自动抓取，已用 Hacker News + leijuan + GitHub 作为等价替代源覆盖社区热点。</p>
+<section class="card hl"><h2>今日最值得看</h2>
+<p>- <strong>NVIDIA 发布 auto-ontology</strong>：用图结构做语义/知识推理层，给 LLM 和 Agent 提供可解释的检索与确定性查询生成（GitHub 单日 +2015 star）。</p>
+<p>- <strong>Cloudflare 推出 security-audit-skill</strong>：多阶段、可机器校验的安全审计 Agent 技能，单日 +2548 star，值得安全/研发流程关注。</p>
+<p>- <strong>Gemini Omni 1.2 Flash 发布</strong>（Hacker News 307 分）：Google 端侧/低延迟多模态模型新版本。</p>
+<p>- <strong>Libghostty 1.0</strong>（Hacker News 371 分）：Ghostty 终端的底层库正式发布，Rust + Linux 终端生态重要进展。</p>
+<p>- <strong>leijuan Tech Weekly</strong>：Polars 2.1、Kafka 4.4、Ghostty 1.4、GPT-6.1 Terra 集中更新，大数据与 AI 双线活跃。</p>
+<hr>
+</section>
+<section class="card "><h2>一、GitHub 每日热门（精选，含今日新增 star）</h2>
+<table><thead><tr>
+<th>仓库</th>
+<th>语言</th>
+<th>今日 star</th>
+<th>方向</th>
+<th>一句话</th>
+</tr></thead><tbody>
+<tr>
+<td><a href="https://github.com/cloudflare/security-audit-skill">cloudflare/security-audit-skill</a></td>
+<td>JS</td>
+<td><span class="stars">2,548</span></td>
+<td><span class="tag tag-ai">AI</span><span class="tag tag-other">安全</span></td>
+<td>多阶段、可机器校验的 Agent 安全审计技能</td>
+</tr>
+<tr>
+<td><a href="https://github.com/mattpocock/skills">mattpocock/skills</a></td>
+<td>Shell</td>
+<td><span class="stars">2,070</span></td>
+<td><span class="tag tag-ai">AI</span><span class="tag tag-other">Agent</span></td>
+<td>面向真实工程师的 Agent Skills 集合</td>
+</tr>
+<tr>
+<td><a href="https://github.com/NVIDIA/auto-ontology">NVIDIA/auto-ontology</a></td>
+<td>Python</td>
+<td><span class="stars">2,015</span></td>
+<td><span class="tag tag-ai">AI</span></td>
+<td>图结构语义推理层，增强 LLM 可解释检索</td>
+</tr>
+<tr>
+<td><a href="https://github.com/google/skills">google/skills</a></td>
+<td>Python</td>
+<td><span class="stars">534</span></td>
+<td><span class="tag tag-ai">AI</span><span class="tag tag-other">Agent</span></td>
+<td>Google 产品技术的 Agent Skills</td>
+</tr>
+<tr>
+<td><a href="https://github.com/zed-industries/zed">zed-industries/zed</a></td>
+<td>Rust</td>
+<td><span class="stars">306</span></td>
+<td><span class="tag tag-rust">Rust</span><span class="tag tag-other">工具</span></td>
+<td>高性能多人协作代码编辑器</td>
+</tr>
+<tr>
+<td><a href="https://github.com/microsoft/vscode">microsoft/vscode</a></td>
+<td>TS</td>
+<td><span class="stars">301</span></td>
+<td><span class="tag tag-other">工具</span></td>
+<td>VS Code</td>
+</tr>
+<tr>
+<td><a href="https://github.com/react/react">react/react</a></td>
+<td>JS</td>
+<td><span class="stars">248</span></td>
+<td><span class="tag tag-other">前端</span></td>
+<td>React 库</td>
+</tr>
+<tr>
+<td><a href="https://github.com/rust-lang/rust">rust-lang/rust</a></td>
+<td>Rust</td>
+<td><span class="stars">192</span></td>
+<td><span class="tag tag-rust">Rust</span></td>
+<td>Rust 语言本体</td>
+</tr>
+<tr>
+<td><a href="https://github.com/astral-sh/ruff">astral-sh/ruff</a></td>
+<td>Rust</td>
+<td><span class="stars">169</span></td>
+<td><span class="tag tag-rust">Rust</span><span class="tag tag-other">Python</span></td>
+<td>极快的 Python Linter/Formatter</td>
+</tr>
+<tr>
+<td><a href="https://github.com/prometheus/prometheus">prometheus/prometheus</a></td>
+<td>Go</td>
+<td><span class="stars">148</span></td>
+<td><span class="tag tag-cloud">云计算</span><span class="tag tag-other">监控</span></td>
+<td>监控与时序数据库</td>
+</tr>
+<tr>
+<td><a href="https://github.com/nushell/nushell">nushell/nushell</a></td>
+<td>Rust</td>
+<td><span class="stars">131</span></td>
+<td><span class="tag tag-rust">Rust</span><span class="tag tag-linux">Linux</span></td>
+<td>新型 Shell</td>
+</tr>
+<tr>
+<td><a href="https://github.com/etcd-io/etcd">etcd-io/etcd</a></td>
+<td>Go</td>
+<td><span class="stars">128</span></td>
+<td><span class="tag tag-cloud">云计算</span></td>
+<td>分布式键值存储</td>
+</tr>
+<tr>
+<td><a href="https://github.com/angular/angular">angular/angular</a></td>
+<td>TS</td>
+<td><span class="stars">135</span></td>
+<td><span class="tag tag-other">前端</span></td>
+<td>Angular 框架</td>
+</tr>
+<tr>
+<td><a href="https://github.com/symfony/symfony">symfony/symfony</a></td>
+<td>PHP</td>
+<td><span class="stars">128</span></td>
+<td><span class="tag tag-other">后端</span></td>
+<td>Symfony PHP 框架</td>
+</tr>
+<tr>
+<td><a href="https://github.com/rails/rails">rails/rails</a></td>
+<td>Ruby</td>
+<td><span class="stars">142</span></td>
+<td><span class="tag tag-other">后端</span></td>
+<td>Ruby on Rails</td>
+</tr>
+<tr>
+<td><a href="https://github.com/mpv-player/mpv">mpv-player/mpv</a></td>
+<td>C</td>
+<td><span class="stars">37</span></td>
+<td><span class="tag tag-other">工具</span></td>
+<td>命令行媒体播放器</td>
+</tr>
+<tr>
+<td><a href="https://github.com/openssl/openssl">openssl/openssl</a></td>
+<td>C</td>
+<td><span class="stars">26</span></td>
+<td><span class="tag tag-other">安全</span></td>
+<td>TLS/加密库</td>
+</tr>
+</tbody></table>
+<p class="note">注：每日任务会额外抓取 Rust / Java / Go / Python / C / TypeScript 分语言榜，确保 Java、Rust 等方向不遗漏。</p>
+<hr>
+</section>
+<section class="card "><h2>二、Hacker News 头条（精选，按分数）</h2>
+<table><thead><tr>
+<th>标题</th>
+<th>分数</th>
+<th>评论</th>
+<th>方向</th>
+<th>链接</th>
+</tr></thead><tbody>
+<tr>
+<td>A Jev that can ask Opus for help gives Opus accuracy at 4x lower cost</td>
+<td><span class="stars">390</span></td>
+<td>87</td>
+<td><span class="tag tag-ai">AI</span></td>
+<td>https://hightouch.com/blog/llm-judges-identity-resolution</td>
+</tr>
+<tr>
+<td>Libghostty 1.0</td>
+<td><span class="stars">371</span></td>
+<td>61</td>
+<td><span class="tag tag-rust">Rust</span><span class="tag tag-linux">Linux</span></td>
+<td>https://mitchellh.com/writing/libghostty-1-0</td>
+</tr>
+<tr>
+<td>Gemini Omni 1.2 Flash</td>
+<td><span class="stars">307</span></td>
+<td>220</td>
+<td><span class="tag tag-ai">AI</span></td>
+<td>https://blog.google/.../gemini-omni-1-2-flash/</td>
+</tr>
+<tr>
+<td>Anthropic IPO buyers see valuation as low as $1.1T</td>
+<td><span class="stars">259</span></td>
+<td>516</td>
+<td><span class="tag tag-ai">AI</span><span class="tag tag-other">商业</span></td>
+<td>https://www.bloomberg.com/...</td>
+</tr>
+<tr>
+<td>AI is dramatically accelerating AI research</td>
+<td><span class="stars">238</span></td>
+<td>181</td>
+<td><span class="tag tag-ai">AI</span></td>
+<td>https://www.planned-obsolescence.org/p/ai-is-dramatically-accelerating-ai</td>
+</tr>
+<tr>
+<td>First steps in bare-metal programming using UEFI</td>
+<td><span class="stars">205</span></td>
+<td>37</td>
+<td><span class="tag tag-linux">Linux</span></td>
+<td>https://kevinboone.me/efitest_index.html</td>
+</tr>
+<tr>
+<td>Firecracker VM Escape: PwnEscape Part 2</td>
+<td><span class="stars">196</span></td>
+<td>94</td>
+<td><span class="tag tag-cloud">云计算</span><span class="tag tag-other">安全</span></td>
+<td>https://pwn.ai/blog/firecracker-escape</td>
+</tr>
+<tr>
+<td>Devvm.dev: One VM for every project</td>
+<td><span class="stars">134</span></td>
+<td>54</td>
+<td><span class="tag tag-cloud">云计算</span></td>
+<td>https://devvm.dev/</td>
+</tr>
+<tr>
+<td>Memorilla: Latent Semantic Memory for LLMs</td>
+<td><span class="stars">95</span></td>
+<td>10</td>
+<td><span class="tag tag-ai">AI</span></td>
+<td>https://arxiv.org/abs/2610.21375</td>
+</tr>
+<tr>
+<td>GitHub's new Git storage architecture</td>
+<td><span class="stars">92</span></td>
+<td>17</td>
+<td><span class="tag tag-cloud">云计算</span><span class="tag tag-other">基础设施</span></td>
+<td>https://github.blog/.../new-git-storage-architecture/</td>
+</tr>
+<tr>
+<td>Replit rebuilt its sandbox engine with microVMs</td>
+<td><span class="stars">76</span></td>
+<td>26</td>
+<td><span class="tag tag-cloud">云计算</span></td>
+<td>https://frontier.replit.com/sandbox-engine-microvms-part-1/</td>
+</tr>
+<tr>
+<td>Can GROUP BY still be optimized after all these years?</td>
+<td><span class="stars">58</span></td>
+<td>2</td>
+<td><span class="tag tag-bigdata">大数据</span></td>
+<td>https://pivotlake.io/blog/.../top-k-aggregation/</td>
+</tr>
+<tr>
+<td>Google acquires Crusoe's data center site in Wyoming</td>
+<td><span class="stars">54</span></td>
+<td>9</td>
+<td><span class="tag tag-cloud">云计算</span></td>
+<td>https://www.crusoe.ai/...</td>
+</tr>
+</tbody></table>
+<hr>
+</section>
+<section class="card "><h2>三、leijuan 技术博客（linux_china）最新</h2>
+<table><thead><tr>
+<th>日期</th>
+<th>标题</th>
+<th>方向</th>
+<th>链接</th>
+</tr></thead><tbody>
+<tr>
+<td>2026-11-03</td>
+<td>FastAPI Cloud 对外开发（快速部署 FastAPI 应用）</td>
+<td><span class="tag tag-cloud">云计算</span><span class="tag tag-other">Python</span></td>
+<td>https://leijuan.davao.page/blog/2026-11-03-fastapi-cloud</td>
+</tr>
+<tr>
+<td>2026-11-01</td>
+<td>Tech Weekly：GPT-6.1 Terra, Ghostty 1.4, Polars 2.1, Kafka 4.4</td>
+<td><span class="tag tag-ai">AI</span><span class="tag tag-bigdata">大数据</span><span class="tag tag-linux">Linux</span></td>
+<td>https://leijuan.davao.page/blog/2026-11-01-tech-weekly</td>
+</tr>
+<tr>
+<td>2026-10-31</td>
+<td>Confluent Kafka Rust Client 1.0（轻量 Rust Kafka 客户端）</td>
+<td><span class="tag tag-bigdata">大数据</span><span class="tag tag-rust">Rust</span></td>
+<td>https://leijuan.davao.page/blog/2026-10-31-kafka-rust-client</td>
+</tr>
+<tr>
+<td>2026-10-29</td>
+<td>PGX：为 AI Agent 快速创建独立 PostgreSQL 数据库</td>
+<td><span class="tag tag-ai">AI</span><span class="tag tag-bigdata">大数据</span></td>
+<td>https://leijuan.davao.page/blog/2026-10-29-pgx</td>
+</tr>
+<tr>
+<td>2026-10-25</td>
+<td>Tech Weekly：DuckDB 2.0, Kimi K3.1 Pro</td>
+<td><span class="tag tag-bigdata">大数据</span><span class="tag tag-ai">AI</span></td>
+<td>https://leijuan.davao.page/blog/2026-10-25-tech-weekly</td>
+</tr>
+</tbody></table>
+<hr>
+</section>
+<section class="card "><h2>四、按方向速览</h2>
+<table><thead><tr>
+<th>方向</th>
+<th>今日要点</th>
+</tr></thead><tbody>
+<tr>
+<td><span class="tag tag-ai">**AI**</span></td>
+<td><span class="stars">NVIDIA auto-ontology、Gemini Omni 1.2 Flash、Anthropic IPO、Memorilla(LLM 记忆)、Jev+Opus 降本方案、PGX(AI Agent 数据库)</span></td>
+</tr>
+<tr>
+<td><span class="tag tag-bigdata">**大数据**</span></td>
+<td><span class="stars">Polars 2.1、Kafka 4.4、Confluent Kafka Rust Client、DuckDB 2.0、GROUP BY 聚合优化新研究</span></td>
+</tr>
+<tr>
+<td><span class="tag tag-cloud">**云计算**</span></td>
+<td><span class="stars">Google 收购 Crusoe 数据中心、Replit microVM 沙箱、GitHub 新 Git 存储架构、Devvm.dev、FastAPI Cloud</span></td>
+</tr>
+<tr>
+<td><span class="tag tag-java">**Java**</span></td>
+<td><span class="stars">本周 leijuan 提到 Java 27、DuckDB Java 表函数（每日任务将补抓 Java 语言榜）</span></td>
+</tr>
+<tr>
+<td><span class="tag tag-rust">**Rust**</span></td>
+<td><span class="stars">zed、rust-lang/rust、nushell、ruff、Confluent Kafka Rust Client、Libghostty 1.0</span></td>
+</tr>
+<tr>
+<td><span class="tag tag-linux">**Linux**</span></td>
+<td><span class="stars">Libghostty 1.0、UEFI 裸机编程入门、Firecracker VM 逃逸分析、leijuan(linux_china) 周报</span></td>
+</tr>
+<tr>
+<td><span class="tag tag-other">**其他**</span></td>
+<td><span class="stars">openssl、etcd、vscode、react/angular/symfony/rails 常规更新</span></td>
+</tr>
+</tbody></table>
+<hr>
+<footer>生成方式：本日为手动验证样例；后续每日 09:30 由定时任务自动抓取并覆盖生成同路径文件。</footer>
+</section>
+</div>
+</body>
+</html>

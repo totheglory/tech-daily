@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>技术研发日报 2026-11-11</title>
+<style>
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --ink:#1f2328; --muted:#5b6573;
+  --line:#e3e7ec; --accent:#2f6feb; --accent-soft:#eaf1ff;
+  --shadow:0 1px 3px rgba(16,24,40,.06),0 6px 20px rgba(16,24,40,.05);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:14px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;}
+.wrap{max-width:1120px;margin:0 auto;padding:28px 20px 56px}
+h1{font-size:26px;margin:0 0 6px;letter-spacing:.3px}
+h2{font-size:19px;margin:0;padding:0 0 12px;border-bottom:1px solid var(--line)}
+h3{font-size:15px;margin:24px 0 10px;color:#30363d}
+.wrap>header{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:24px 26px;margin-bottom:18px;box-shadow:var(--shadow)}
+.subtitle{color:var(--muted);font-size:12.5px;margin:0}
+.note{color:var(--muted);font-size:12px;margin:12px 0 0;line-height:1.7}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:22px 26px;margin-bottom:18px;box-shadow:var(--shadow)}
+.hl{background:linear-gradient(180deg,#f0f6ff,#ffffff);border:1px solid #cfe0ff}
+.hl h2{border-bottom-color:#cfe0ff}
+ol.takeaways{margin:16px 0 0;padding-left:22px}
+ol.takeaways li{margin:9px 0}
+ol.takeaways li::marker{color:var(--accent);font-weight:700}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:#f7f9fb;color:#3b444f;font-weight:600;white-space:nowrap;font-size:12.5px}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:#fafbfd}
+td a{color:var(--accent);text-decoration:none;white-space:nowrap}
+td a:hover{text-decoration:underline}
+code{background:#f0f2f5;border-radius:4px;padding:1px 5px;font-size:12px;color:#b3306a}
+.tag{display:inline-block;font-size:11px;font-weight:600;line-height:1.5;
+  padding:1px 8px;border-radius:20px;white-space:nowrap;margin:1px 3px 1px 0}
+.tag-ai{background:#efe9ff;color:#6d3fd4}
+.tag-bigdata{background:#e6f0ff;color:#1d5fcb}
+.tag-cloud{background:#e2f5f4;color:#0e7c74}
+.tag-java{background:#ffede1;color:#c2571a}
+.tag-rust{background:#fbe9e7;color:#b23a2b}
+.tag-linux{background:#fff3d6;color:#9a6700}
+.tag-other{background:#eef1f4;color:#57606a}
+.stars{color:#b23a2b;font-weight:600}
+footer{text-align:center;color:var(--muted);font-size:12px;margin-top:26px}
+hr{border:0;border-top:1px dashed var(--line);margin:4px 0}
+@media(max-width:760px){
+  .wrap{padding:16px 12px 40px}
+  .card,header{padding:16px}
+  table{display:block;overflow-x:auto;white-space:nowrap}
+  h1{font-size:22px}
+}
+@media print{
+  body{background:#fff}.card,header{box-shadow:none;break-inside:avoid}
+  td a{color:#1f2328}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><h1>技术研发日报 2026-11-11</h1>
+</header>
+<section class="card hl"><h2>今日最值得看</h2>
+<p>- <strong>Google 全量开放 Gemini 4 Carbon + 预览「蜂群(swarm)」</strong>：11/10 起通过 Gemini API / AI Studio / Antigravity 开放，并预览单条提示词拉起多智能体长周期任务的功能；定价约竞品 1/5（输入 $2 / 输出 $10 每百万 token，11/30 后翻倍）。</p>
+<p>- <strong>AI Agent 工具链继续霸榜 GitHub</strong>：meta/astryx（3,108★）、anthropics/skills（1,679★）、vercel-labs/agent-browser、milind-soni/OpenMausBot、ranxianglei/billion-context 等围绕"技能 / Agent 就绪 / 上下文压缩"高频涌现。</p>
+<p>- <strong>火山引擎 × AMD 发布第六代 EPYC（Venice）云实例</strong>：256 核 / 512 线程、DDR5 16 通道、PCIe 6.0，内存带宽较 Turin 最高 2.6×，主攻云原生多租户与 AI 工作流 CPU 侧算力。</p>
+<p>- <strong>HN 焦点：AI 编程质量 + 形式化证明</strong>：「AI usage generates a fragile codebase」（363 分 / 395 评论）与 DeepMind AlphaProof Code（574 分）同日登顶，AI 代码脆弱性与自动证明成社区主线。</p>
+<p>- <strong>大数据 / 云语义层推进</strong>：Google BigQuery measures 正式版合并治理指标与知识图谱，为智能体提供统一语义层；腾讯 WeKnora、infiniflow/ragflow 等 RAG/Agent 基础设施持续走热。</p>
+<hr>
+</section>
+<section class="card "><h2>GitHub 热门（daily, top 15）</h2>
+<table><thead><tr>
+<th>#</th>
+<th>项目</th>
+<th>语言</th>
+<th>今日新增★</th>
+<th>说明</th>
+<th>链接</th>
+</tr></thead><tbody>
+<tr>
+<td>1</td>
+<td>meta/astryx</td>
+<td>TypeScript</td>
+<td><span class="stars">3,108</span></td>
+<td>可定制、Agent 就绪的开源设计系统</td>
+<td>https://github.com/meta/astryx</td>
+</tr>
+<tr>
+<td>2</td>
+<td>sherlock-project/sherlock</td>
+<td>Python</td>
+<td><span class="stars">2,393</span></td>
+<td>按用户名跨社交网络反查账号</td>
+<td>https://github.com/sherlock-project/sherlock</td>
+</tr>
+<tr>
+<td>3</td>
+<td>anthropics/skills</td>
+<td>Python</td>
+<td><span class="stars">1,679</span></td>
+<td>Anthropic 官方 Agent Skills 仓库</td>
+<td>https://github.com/anthropics/skills</td>
+</tr>
+<tr>
+<td>4</td>
+<td>mattpocock/skills</td>
+<td>Shell</td>
+<td><span class="stars">1,225</span></td>
+<td>面向真实工程师的 Skills 合集</td>
+<td>https://github.com/mattpocock/skills</td>
+</tr>
+<tr>
+<td>5</td>
+<td>debpalash/VoiceStudio</td>
+<td>Python</td>
+<td><span class="stars">1,207</span></td>
+<td>完全本地的 ElevenLabs 替代品（646 语言）</td>
+<td>https://github.com/debpalash/VoiceStudio</td>
+</tr>
+<tr>
+<td>6</td>
+<td>milind-soni/OpenMausBot</td>
+<td>TypeScript</td>
+<td><span class="stars">1,096</span></td>
+<td>开源 Grok Bot 替代 + 虚拟机沙箱</td>
+<td>https://github.com/milind-soni/OpenMausBot</td>
+</tr>
+<tr>
+<td>7</td>
+<td>ZhuLinsen/daily_stock_analysis</td>
+<td>Python</td>
+<td><span class="stars">960</span></td>
+<td>LLM 驱动多市场股票智能分析 + 自动推送</td>
+<td>https://github.com/ZhuLinsen/daily_stock_analysis</td>
+</tr>
+<tr>
+<td>8</td>
+<td>homeassistant-ai/ha-mcp</td>
+<td>Python</td>
+<td><span class="stars">790</span></td>
+<td>用 Claude/ChatGPT 配置与自动化 Home Assistant</td>
+<td>https://github.com/homeassistant-ai/ha-mcp</td>
+</tr>
+<tr>
+<td>9</td>
+<td>vercel-labs/agent-browser</td>
+<td>Rust</td>
+<td><span class="stars">780</span></td>
+<td>面向 AI Agent 的浏览器自动化 CLI</td>
+<td>https://github.com/vercel-labs/agent-browser</td>
+</tr>
+<tr>
+<td>10</td>
+<td>anthropics/claude-quickstarts</td>
+<td>Python</td>
+<td><span class="stars">531</span></td>
+<td>Claude API 上手项目合集</td>
+<td>https://github.com/anthropics/claude-quickstarts</td>
+</tr>
+<tr>
+<td>11</td>
+<td>addyosmani/agent-skills</td>
+<td>JavaScript</td>
+<td><span class="stars">465</span></td>
+<td>生产级 AI 编码 Agent 工程技能</td>
+<td>https://github.com/addyosmani/agent-skills</td>
+</tr>
+<tr>
+<td>12</td>
+<td>garrytan/gbrain</td>
+<td>TypeScript</td>
+<td><span class="stars">462</span></td>
+<td>OpenClaw/Hermes Agent 的"大脑"配置</td>
+<td>https://github.com/garrytan/gbrain</td>
+</tr>
+<tr>
+<td>13</td>
+<td>google-deepmind/mujoco</td>
+<td>C++</td>
+<td><span class="stars">456</span></td>
+<td>通用多关节接触物理模拟器</td>
+<td>https://github.com/google-deepmind/mujoco</td>
+</tr>
+<tr>
+<td>14</td>
+<td>ranxianglei/billion-context</td>
+<td>TypeScript</td>
+<td><span class="stars">375</span></td>
+<td>月级长会话上下文压缩插件（省 5× token）</td>
+<td>https://github.com/ranxianglei/billion-context</td>
+</tr>
+<tr>
+<td>15</td>
+<td>we-promise/sure</td>
+<td>Ruby</td>
+<td><span class="stars">159</span></td>
+<td>众包式个人理财应用</td>
+<td>https://github.com/we-promise/sure</td>
+</tr>
+</tbody></table>
+<h3>分语言 Top 5（补充 daily 未覆盖的重点方向）</h3>
+<p><strong>Rust</strong></p>
+<table><thead><tr>
+<th>项目</th>
+<th>今日★</th>
+<th>说明</th>
+<th>链接</th>
+</tr></thead><tbody>
+<tr>
+<td>ruvnet/RuView</td>
+<td><span class="stars">627</span></td>
+<td>用 WiFi 信号做实时空间智能 / 生命体征监测</td>
+<td>https://github.com/ruvnet/RuView</td>
+</tr>
+<tr>
+<td>tokio-rs/topcoat</td>
+<td><span class="stars">192</span></td>
+<td>开箱即用的 Web 应用框架</td>
+<td>https://github.com/tokio-rs/topcoat</td>
+</tr>
+<tr>
+<td>GyulyVGC/sniffnet</td>
+<td><span class="stars">139</span></td>
+<td>网络流量监控</td>
+<td>https://github.com/GyulyVGC/sniffnet</td>
+</tr>
+<tr>
+<td>rustdesk/rustdesk</td>
+<td><span class="stars">135</span></td>
+<td>自托管的开源远程桌面</td>
+<td>https://github.com/rustdesk/rustdesk</td>
+</tr>
+<tr>
+<td>crmne/spotifast</td>
+<td><span class="stars">87</span></td>
+<td>原生、快速的 Spotify 客户端</td>
+<td>https://github.com/crmne/spotifast</td>
+</tr>
+</tbody></table>
+<p><strong>Java</strong></p>
+<table><thead><tr>
+<th>项目</th>
+<th>今日★</th>
+<th>说明</th>
+<th>链接</th>
+</tr></thead><tbody>
+<tr>
+<td>NationalSecurityAgency/ghidra</td>
+<td><span class="stars">287</span></td>
+<td>软件逆向工程（SRE）框架</td>
+<td>https://github.com/NationalSecurityAgency/ghidra</td>
+</tr>
+<tr>
+<td>TheAlgorithms/Java</td>
+<td><span class="stars">39</span></td>
+<td>全算法 Java 实现</td>
+<td>https://github.com/TheAlgorithms/Java</td>
+</tr>
+<tr>
+<td>kksimp/Mac.apk</td>
+<td><span class="stars">31</span></td>
+<td>在 Apple Silicon Mac 原生运行 Android 应用</td>
+<td>https://github.com/kksimp/Mac.apk</td>
+</tr>
+<tr>
+<td>LSPosed/LSPosed</td>
+<td><span class="stars">22</span></td>
+<td>Android 框架级注入框架</td>
+<td>https://github.com/LSPosed/LSPosed</td>
+</tr>
+<tr>
+<td>jean-voila/FeurStagram</td>
+<td><span class="stars">20</span></td>
+<td>无 Reels/广告的开源 Instagram 客户端</td>
+<td>https://github.com/jean-voila/FeurStagram</td>
+</tr>
+</tbody></table>
+<p><strong>Go</strong></p>
+<table><thead><tr>
+<th>项目</th>
+<th>今日★</th>
+<th>说明</th>
+<th>链接</th>
+</tr></thead><tbody>
+<tr>
+<td>JuliusBrussee/caveman</td>
+<td><span class="stars">270</span></td>
+<td>用"原始人"话术给编码 Agent 省 65% token 的技能+代理</td>
+<td>https://github.com/JuliusBrussee/caveman</td>
+</tr>
+<tr>
+<td>gosom/google-maps-scraper</td>
+<td><span class="stars">121</span></td>
+<td>Google Maps 数据抓取</td>
+<td>https://github.com/gosom/google-maps-scraper</td>
+</tr>
+<tr>
+<td>Tencent/WeKnora</td>
+<td><span class="stars">117</span></td>
+<td>把文档转成可查询 RAG + 推理 Agent + 自维护 Wiki</td>
+<td>https://github.com/Tencent/WeKnora</td>
+</tr>
+<tr>
+<td>agent-substrate/substrate</td>
+<td><span class="stars">87</span></td>
+<td>Agent 核心系统</td>
+<td>https://github.com/agent-substrate/substrate</td>
+</tr>
+<tr>
+<td>dsx-ai-factory/nvke</td>
+<td><span class="stars">77</span></td>
+<td>裸金属 GPU Kubernetes 管理面（NVIDIA K8s Engine）</td>
+<td>https://github.com/dsx-ai-factory/nvke</td>
+</tr>
+</tbody></table>
+<p><strong>Python</strong>（剔除已入 daily top15）</p>
+<table><thead><tr>
+<th>项目</th>
+<th>今日★</th>
+<th>说明</th>
+<th>链接</th>
+</tr></thead><tbody>
+<tr>
+<td>opensandbox-group/OpenSandbox</td>
+<td><span class="stars">323</span></td>
+<td>面向 AI Agent 的安全、快速沙箱运行时</td>
+<td>https://github.com/opensandbox-group/OpenSandbox</td>
+</tr>
+<tr>
+<td>Imbad0202/academic-research-skills</td>
+<td><span class="stars">225</span></td>
+<td>Claude Code 学术研究技能（研究→写作→审稿）</td>
+<td>https://github.com/Imbad0202/academic-research-skills</td>
+</tr>
+<tr>
+<td>rohitg00/ai-engineering-from-scratch</td>
+<td><span class="stars">207</span></td>
+<td>从零学 AI Engineering 的实战仓库</td>
+<td>https://github.com/rohitg00/ai-engineering-from-scratch</td>
+</tr>
+<tr>
+<td>OpenBMB/VoxCPM</td>
+<td><span class="stars">140</span></td>
+<td>无分词器的多语种 TTS / 声音克隆</td>
+<td>https://github.com/OpenBMB/VoxCPM</td>
+</tr>
+<tr>
+<td>ashishpatel26/500-AI-Agents-Projects</td>
+<td><span class="stars">126</span></td>
+<td>500 个跨行业 AI Agent 项目合集</td>
+<td>https://github.com/ashishpatel26/500-AI-Agents-Projects</td>
+</tr>
+</tbody></table>
+<p><strong>C</strong></p>
+<table><thead><tr>
+<th>项目</th>
+<th>今日★</th>
+<th>说明</th>
+<th>链接</th>
+</tr></thead><tbody>
+<tr>
+<td>InterceptSuite/ProxyBridge</td>
+<td><span class="stars">20</span></td>
+<td>强制任意应用走代理的跨平台客户端</td>
+<td>https://github.com/InterceptSuite/ProxyBridge</td>
+</tr>
+<tr>
+<td>sp00nznet/xboxrecomp</td>
+<td><span class="stars">18</span></td>
+<td>Xbox 游戏二进制静态重编译为原生 Windows 可执行文件（无模拟器）</td>
+<td>https://github.com/sp00nznet/xboxrecomp</td>
+</tr>
+<tr>
+<td>Zelda64Recomp/Zelda64Recomp</td>
+<td><span class="stars">13</span></td>
+<td>《塞尔达：假面》PC 静态重编译</td>
+<td>https://github.com/Zelda64Recomp/Zelda64Recomp</td>
+</tr>
+<tr>
+<td>redcanaryco/atomic-red-team</td>
+<td><span class="stars">11</span></td>
+<td>基于 MITRE ATT&amp;CK 的可移植检测测试</td>
+<td>https://github.com/redcanaryco/atomic-red-team</td>
+</tr>
+<tr>
+<td>zeldaret/oot</td>
+<td><span class="stars">8</span></td>
+<td>《塞尔达：时之笛》反编译</td>
+<td>https://github.com/zeldaret/oot</td>
+</tr>
+</tbody></table>
+<p><strong>TypeScript</strong>（剔除已入 daily top15）</p>
+<table><thead><tr>
+<th>项目</th>
+<th>今日★</th>
+<th>说明</th>
+<th>链接</th>
+</tr></thead><tbody>
+<tr>
+<td>WhiteTowerAI/ohmygame</td>
+<td><span class="stars">170</span></td>
+<td>用 AI 做游戏的一站式开源工作室</td>
+<td>https://github.com/WhiteTowerAI/ohmygame</td>
+</tr>
+<tr>
+<td>every-app/open-seo</td>
+<td><span class="stars">141</span></td>
+<td>Semrush / Ahrefs 的开源替代</td>
+<td>https://github.com/every-app/open-seo</td>
+</tr>
+<tr>
+<td>fosrl/pangolin</td>
+<td><span class="stars">108</span></td>
+<td>面向应用/基础设施/AI 负载的安全访问平台</td>
+<td>https://github.com/fosrl/pangolin</td>
+</tr>
+<tr>
+<td>upscayl/upscayl</td>
+<td><span class="stars">82</span></td>
+<td>免费开源 AI 图像放大工具</td>
+<td>https://github.com/upscayl/upscayl</td>
+</tr>
+<tr>
+<td>mantrakp04/ardia</td>
+<td><span class="stars">64</span></td>
+<td>带 Arc 侧栏 / Dia 质感的免费 Chromium 浏览器</td>
+<td>https://github.com/mantrakp04/ardia</td>
+</tr>
+</tbody></table>
+<hr>
+</section>
+<section class="card "><h2>Hacker News 头条（front_page, top 15 by points）</h2>
+<table><thead><tr>
+<th>标题</th>
+<th>分数</th>
+<th>评论</th>
+<th>链接</th>
+</tr></thead><tbody>
+<tr>
+<td>Smart home devices should work without the internet</td>
+<td><span class="stars">686</span></td>
+<td>247</td>
+<td>https://docodethatmatters.com/home-automation-overnight-success/</td>
+</tr>
+<tr>
+<td>.name Grandfathered</td>
+<td><span class="stars">671</span></td>
+<td>155</td>
+<td>https://neil.fraser.name/news/2026/11/10/</td>
+</tr>
+<tr>
+<td>AlphaProof Code（DeepMind）</td>
+<td><span class="stars">574</span></td>
+<td>175</td>
+<td>https://deepmind.google/blog/introducing-alphaproof-code/</td>
+</tr>
+<tr>
+<td>Blender 5.3 released with Gaussian Splat support</td>
+<td><span class="stars">423</span></td>
+<td>62</td>
+<td>https://www.blender.org/download/releases/5-3/</td>
+</tr>
+<tr>
+<td>AI usage generates a fragile codebase</td>
+<td><span class="stars">363</span></td>
+<td>395</td>
+<td>https://evanxmerz.com/post/ai-usage-generates-a-fragile-codebase/</td>
+</tr>
+<tr>
+<td>Scion is back, selling a kei truck in America</td>
+<td><span class="stars">310</span></td>
+<td>230</td>
+<td>https://www.theautopian.com/scion-is-back-and-its-going-to-sell-a-freaking-kei-truck-in-america/</td>
+</tr>
+<tr>
+<td>Val Town is winding down</td>
+<td><span class="stars">299</span></td>
+<td>77</td>
+<td>https://blog.val.town/winding-down</td>
+</tr>
+<tr>
+<td>Synaptics patent claims stop work on DisplayLink drivers</td>
+<td><span class="stars">285</span></td>
+<td>143</td>
+<td>https://lwn.net/SubscriberLink/1102549/acbc92e00cee3a3f/</td>
+</tr>
+<tr>
+<td>Ableton Live 13</td>
+<td><span class="stars">271</span></td>
+<td>294</td>
+<td>https://www.ableton.com/en/live/</td>
+</tr>
+<tr>
+<td>Show HN: Get your coding agent off ~2019 JavaScript</td>
+<td><span class="stars">252</span></td>
+<td>72</td>
+<td>https://github.com/GoogleChrome/modern-web-guidance</td>
+</tr>
+<tr>
+<td>What's new in the .NET 11 runtime</td>
+<td><span class="stars">238</span></td>
+<td>167</td>
+<td>https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/runtime</td>
+</tr>
+<tr>
+<td>Starlink Mini 2</td>
+<td><span class="stars">217</span></td>
+<td>229</td>
+<td>https://starlink.com/mini-2</td>
+</tr>
+<tr>
+<td>AMD's Zen 6 Family: Feeding the Beast</td>
+<td><span class="stars">180</span></td>
+<td>66</td>
+<td>https://chipsandcheese.com/p/amds-zen-6-family-feeding-the-beast</td>
+</tr>
+<tr>
+<td>After 7 months, Glasswing overwhelms maintainers with underwhelming findings</td>
+<td><span class="stars">165</span></td>
+<td>60</td>
+<td>https://www.vulncheck.com/blog/anthropic-glasswing-november-update</td>
+</tr>
+<tr>
+<td>Process Explorer for macOS</td>
+<td><span class="stars">133</span></td>
+<td>46</td>
+<td>https://github.com/microsoft/Procexp-Mac</td>
+</tr>
+</tbody></table>
+<hr>
+</section>
+<section class="card "><h2>leijuan 周报（linux_china, 最新 8 条）</h2>
+<table><thead><tr>
+<th>日期</th>
+<th>标题</th>
+<th>链接</th>
+</tr></thead><tbody>
+<tr>
+<td>2026-11-08</td>
+<td>Tech Weekly 2026-11-08：FastAPI Cloud、Libghostty 1.0、DeepSeek Super-agent、Technology Radar Vol 35</td>
+<td>https://leijuan.davao.page/blog/2026-11-08-tech-weekly</td>
+</tr>
+<tr>
+<td>2026-11-03</td>
+<td>FastAPI Cloud 对外开发（快速部署 FastAPI 应用）</td>
+<td>https://leijuan.davao.page/blog/2026-11-03-fastapi-cloud</td>
+</tr>
+<tr>
+<td>2026-11-01</td>
+<td>Tech Weekly 2026-11-01：GPT-6.1 Terra、Ghostty 1.4、Polars 2.1、Kafka 4.4</td>
+<td>https://leijuan.davao.page/blog/2026-11-01-tech-weekly</td>
+</tr>
+<tr>
+<td>2026-10-31</td>
+<td>Confluent Kafka Rust Client 1.0（轻量、API 友好的 Rust Kafka 客户端）</td>
+<td>https://leijuan.davao.page/blog/2026-10-31-kafka-rust-client</td>
+</tr>
+<tr>
+<td>2026-10-29</td>
+<td>PGX：为 AI Agent 快速创建独立 PostgreSQL 数据库（单运行时上千临时库）</td>
+<td>https://leijuan.davao.page/blog/2026-10-29-pgx</td>
+</tr>
+<tr>
+<td>2026-10-25</td>
+<td>Tech Weekly 2026-10-25：DuckDB 2.0、Kimi K3.1 Pro</td>
+<td>https://leijuan.davao.page/blog/2026-10-25-tech-weekly</td>
+</tr>
+<tr>
+<td>2026-10-18</td>
+<td>Tech Weekly 2026-10-18：Gemini 4 Argon、Jev 1.14.0、DeepSeek V4.1 Flash-1017</td>
+<td>https://leijuan.davao.page/blog/2026-10-18-tech-weekly</td>
+</tr>
+<tr>
+<td>2026-10-13</td>
+<td>将 DuckDB 数据库保存在 S3 Bucket 中（云端存储 DuckDB）</td>
+<td>https://leijuan.davao.page/blog/2026-10-13-duckdb-with-s3</td>
+</tr>
+</tbody></table>
+<p class="note">leijuan 最新帖停留在 11-08，本周聚合重点：FastAPI Cloud、Libghostty 1.0、DeepSeek Super-agent、Technology Radar Vol 35。</p>
+<hr>
+</section>
+<section class="card "><h2>按方向速览</h2>
+<table><thead><tr>
+<th>方向</th>
+<th>项目/事件</th>
+<th>一句话说明</th>
+<th>链接</th>
+</tr></thead><tbody>
+<tr>
+<td><span class="tag tag-ai">AI</span></td>
+<td>Google Gemini 4 Carbon 全量开放 + Antigravity「蜂群」</td>
+<td>单提示词拉起多智能体团队，定价约竞品 1/5</td>
+<td>https://www.163.com/dy/article/LBDSQILB0511BLFD.html</td>
+</tr>
+<tr>
+<td><span class="tag tag-ai">AI</span></td>
+<td>meta/astryx</td>
+<td>可定制、Agent 就绪的开源设计系统（3,108★）</td>
+<td>https://github.com/meta/astryx</td>
+</tr>
+<tr>
+<td><span class="tag tag-ai">AI</span></td>
+<td>anthropics/skills / mattpocock/skills / addyosmani/agent-skills</td>
+<td>多家 Agent Skills 仓库霸榜，技能化成为共识</td>
+<td>https://github.com/anthropics/skills</td>
+</tr>
+<tr>
+<td><span class="tag tag-ai">AI</span></td>
+<td>vercel-labs/agent-browser / milind-soni/OpenMausBot</td>
+<td>浏览器自动化与 Bot 沙箱，Agent 工具链热度延续</td>
+<td>https://github.com/vercel-labs/agent-browser</td>
+</tr>
+<tr>
+<td><span class="tag tag-ai">AI</span></td>
+<td>ranxianglei/billion-context</td>
+<td>月级长会话上下文压缩，省 5× token</td>
+<td>https://github.com/ranxianglei/billion-context</td>
+</tr>
+<tr>
+<td><span class="tag tag-ai">AI</span></td>
+<td>DeepMind AlphaProof Code</td>
+<td>形式化代码证明，HN 574 分</td>
+<td>https://deepmind.google/blog/introducing-alphaproof-code/</td>
+</tr>
+<tr>
+<td><span class="tag tag-bigdata">大数据</span></td>
+<td>Google BigQuery measures 正式版</td>
+<td>治理指标 + 知识图谱合并，为智能体提供统一语义层</td>
+<td>https://www.toutiao.com/a7706696167589839410</td>
+</tr>
+<tr>
+<td><span class="tag tag-bigdata">大数据</span></td>
+<td>infiniflow/ragflow / Tencent/WeKnora</td>
+<td>RAG/Agent 原生数据库与知识平台持续走热</td>
+<td>https://github.com/infiniflow/ragflow</td>
+</tr>
+<tr>
+<td><span class="tag tag-bigdata">大数据</span></td>
+<td>leijuan：Kafka Rust Client 1.0 / PGX / DuckDB 2.0</td>
+<td>数据基础设施向 Rust 与 Agent 友好演进</td>
+<td>https://leijuan.davao.page/blog/2026-10-31-kafka-rust-client</td>
+</tr>
+<tr>
+<td><span class="tag tag-cloud">云计算</span></td>
+<td>火山引擎 × AMD 第六代 EPYC（Venice）云实例</td>
+<td>256 核、内存带宽 2.6×，主攻云原生与 AI CPU 算力</td>
+<td>https://www.163.com/dy/article/LBENUE0Q0511CPMT.html</td>
+</tr>
+<tr>
+<td><span class="tag tag-cloud">云计算</span></td>
+<td>dsx-ai-factory/nvke</td>
+<td>裸金属 GPU Kubernetes 管理面开源</td>
+<td>https://github.com/dsx-ai-factory/nvke</td>
+</tr>
+<tr>
+<td><span class="tag tag-cloud">云计算</span></td>
+<td>百度智能云「智聚 11.11」</td>
+<td>大模型翻译 3 折、云数据库 3.8 折，AI 云价格战延续</td>
+<td>https://www.geekpark.net/news/373296</td>
+</tr>
+<tr>
+<td><span class="tag tag-java">Java</span></td>
+<td>NationalSecurityAgency/ghidra</td>
+<td>逆向工程框架（287★），Java 榜首</td>
+<td>https://github.com/NationalSecurityAgency/ghidra</td>
+</tr>
+<tr>
+<td><span class="tag tag-java">Java</span></td>
+<td>kksimp/Mac.apk / LSPosed/LSPosed</td>
+<td>Android 生态工具（Apple Silicon 跑 APK、框架注入）</td>
+<td>https://github.com/kksimp/Mac.apk</td>
+</tr>
+<tr>
+<td><span class="tag tag-rust">Rust</span></td>
+<td>ruvnet/RuView</td>
+<td>WiFi 信号转空间智能/生命体征监测（627★）</td>
+<td>https://github.com/ruvnet/RuView</td>
+</tr>
+<tr>
+<td><span class="tag tag-rust">Rust</span></td>
+<td>tokio-rs/topcoat / rustdesk</td>
+<td>Web 框架与自托管远程桌面</td>
+<td>https://github.com/tokio-rs/topcoat</td>
+</tr>
+<tr>
+<td><span class="tag tag-linux">Linux</span></td>
+<td>Synaptics 专利致 DisplayLink 驱动停更</td>
+<td>LWN 报道，影响 Linux 显示链路</td>
+<td>https://lwn.net/SubscriberLink/1102549/acbc92e00cee3a3f/</td>
+</tr>
+<tr>
+<td><span class="tag tag-linux">Linux</span></td>
+<td>sp00nznet/xboxrecomp / Zelda64Recomp</td>
+<td>无模拟器静态重编译，C 生态新热点</td>
+<td>https://github.com/sp00nznet/xboxrecomp</td>
+</tr>
+<tr>
+<td><span class="tag tag-other">其他</span></td>
+<td>Blender 5.3（高斯泼溅支持）</td>
+<td>3D 创作工具链升级</td>
+<td>https://www.blender.org/download/releases/5-3/</td>
+</tr>
+<tr>
+<td><span class="tag tag-other">其他</span></td>
+<td>.NET 11 runtime / AMD Zen 6</td>
+<td>运行时与底层硬件新进展</td>
+<td>https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/runtime</td>
+</tr>
+</tbody></table>
+<hr>
+</section>
+<section class="card "><h2>当日重大发布补充（WebSearch）</h2>
+<p>- <strong>Google Gemini 4 Carbon</strong> 全量开放，Antigravity 预览 /swarm 多智能体编排；CursorBench 4.0 / Perplexity WANDR / Zapier AutomationBench 三项第一，智能体诚实度 92%（上代 Argon 70%）。</p>
+<p>- <strong>美团开源 LongCat-2.5</strong>（MIT）：1.6 万亿参数、每 token 激活约 480 亿、100 万上下文，原生多模态长程 Agent；托管价 $0.3 / $1.2 每百万 token，可 SGLang 自托管。</p>
+<p>- <strong>MiniMax 开源 H3-Image</strong>：10 秒生成 4096×4096（约 1600 万像素）图，速度约主流 5×，支持 16 张参考图。</p>
+<p>- <strong>英伟达 GR00T 2</strong>：20 亿参数 VLA 模型，单次示范 50 项任务平均成功率 71%、五次 95%，同步放出 Isaac Lab 3.0。</p>
+<p>- <strong>Vercel 安全审查上线一周</strong>：Agent 发现 57,897 个漏洞（6,029 严重/高危），自动修复 14,665 个。</p>
+<p>- <strong>OpenAI Control Room</strong>：撤销任务 ID 可在 35 秒内叫停内部研究模型，"失败即拒绝"，覆盖 RL / 评测 / Agent 采样。</p>
+<hr>
+<footer>数据来源：GitHub Trending（daily + Rust/Java/Go/Python/C/TypeScript）、Hacker News front_page API、leijuan（linux_china）博客、WebSearch 补充。x.com 因强制登录未抓取，已用上述源等价覆盖社区热点。</footer>
+</section>
+</div>
+</body>
+</html>

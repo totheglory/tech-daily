@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>技术研发日报 2026-11-15</title>
+<style>
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --ink:#1f2328; --muted:#5b6573;
+  --line:#e3e7ec; --accent:#2f6feb; --accent-soft:#eaf1ff;
+  --shadow:0 1px 3px rgba(16,24,40,.06),0 6px 20px rgba(16,24,40,.05);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:14px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;}
+.wrap{max-width:1120px;margin:0 auto;padding:28px 20px 56px}
+h1{font-size:26px;margin:0 0 6px;letter-spacing:.3px}
+h2{font-size:19px;margin:0;padding:0 0 12px;border-bottom:1px solid var(--line)}
+h3{font-size:15px;margin:24px 0 10px;color:#30363d}
+.wrap>header{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:24px 26px;margin-bottom:18px;box-shadow:var(--shadow)}
+.subtitle{color:var(--muted);font-size:12.5px;margin:0}
+.note{color:var(--muted);font-size:12px;margin:12px 0 0;line-height:1.7}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:22px 26px;margin-bottom:18px;box-shadow:var(--shadow)}
+.hl{background:linear-gradient(180deg,#f0f6ff,#ffffff);border:1px solid #cfe0ff}
+.hl h2{border-bottom-color:#cfe0ff}
+ol.takeaways{margin:16px 0 0;padding-left:22px}
+ol.takeaways li{margin:9px 0}
+ol.takeaways li::marker{color:var(--accent);font-weight:700}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:#f7f9fb;color:#3b444f;font-weight:600;white-space:nowrap;font-size:12.5px}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:#fafbfd}
+td a{color:var(--accent);text-decoration:none;white-space:nowrap}
+td a:hover{text-decoration:underline}
+code{background:#f0f2f5;border-radius:4px;padding:1px 5px;font-size:12px;color:#b3306a}
+.tag{display:inline-block;font-size:11px;font-weight:600;line-height:1.5;
+  padding:1px 8px;border-radius:20px;white-space:nowrap;margin:1px 3px 1px 0}
+.tag-ai{background:#efe9ff;color:#6d3fd4}
+.tag-bigdata{background:#e6f0ff;color:#1d5fcb}
+.tag-cloud{background:#e2f5f4;color:#0e7c74}
+.tag-java{background:#ffede1;color:#c2571a}
+.tag-rust{background:#fbe9e7;color:#b23a2b}
+.tag-linux{background:#fff3d6;color:#9a6700}
+.tag-other{background:#eef1f4;color:#57606a}
+.stars{color:#b23a2b;font-weight:600}
+footer{text-align:center;color:var(--muted);font-size:12px;margin-top:26px}
+hr{border:0;border-top:1px dashed var(--line);margin:4px 0}
+@media(max-width:760px){
+  .wrap{padding:16px 12px 40px}
+  .card,header{padding:16px}
+  table{display:block;overflow-x:auto;white-space:nowrap}
+  h1{font-size:22px}
+}
+@media print{
+  body{background:#fff}.card,header{box-shadow:none;break-inside:avoid}
+  td a{color:#1f2328}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><h1>技术研发日报 2026-11-15</h1>
+</header>
+<p class="note">数据来源：GitHub Trending（daily + Rust/Java/Go/Python/C/TypeScript 分语言页）、Hacker News 首页 API、leijuan（linux_china）博客、WebSearch 补充。x.com 因强制登录未抓取，已用 HN + leijuan + GitHub 等价覆盖社区热点。</p>
+<section class="card hl"><h2>今日最值得看</h2>
+<ol class="takeaways">
+<li><strong>AI 编程 Agent 工具链继续霸榜 GitHub</strong>：GoogleChrome/modern-web-guidance-src（+1,231★）、ChromeDevTools/chrome-devtools-mcp（+664★）、openai/codex-security（+595★）、alibaba/open-code-review（+893★）领跑。</li>
+<li><strong>华为云今日（11-15）上线 openPangu-2.1-Pro 旗舰开源模型</strong>，主攻鸿蒙 ArkTS 代码生成；AgentArts / CodeArts / OfficeAce 同步接入。</li>
+<li><strong>本地推理引擎加速</strong>：llama.cpp 正式发布 v1（MoE offload + LRU 缓存）、ggml 1.0.0；Rust 系 QuixiGate（8ms 冷启动）、LexiSuite（193 万行推理栈）密集出新。</li>
+<li><strong>算力与商业化</strong>：联想"万全 Token 工厂"落子张家口（一期 100MW / 15000P，目标 token 成本降 70%）；DeepSeek 把 App 能力开放为 API 分开计费；Moonshot AI 拆除海外架构筹备 2027 港股 IPO。</li>
+<li><strong>HN 安全/隐私焦点</strong>：Lovable 应用泄露护照与 20 万+私信（644★）；Project Zero 改为漏洞报告后 90 天披露（161★）；Cursor 披露 Fireworks AI 密钥泄露的供应链事件。</li>
+</ol>
+<hr>
+</section>
+<section class="card "><h2>GitHub 热门</h2>
+<h3>每日总榜 Top 15（按今日新增 Star）</h3>
+<table><thead><tr>
+<th>项目</th>
+<th>语言</th>
+<th>今日★</th>
+<th>一句话说明</th>
+<th>链接</th>
+</tr></thead><tbody>
+<tr>
+<td>GoogleChrome/modern-web-guidance-src</td>
+<td>TypeScript</td>
+<td><span class="stars">1,231</span></td>
+<td>让 coding agent 跟上最新 Web 最佳实践</td>
+<td>https://github.com/GoogleChrome/modern-web-guidance-src</td>
+</tr>
+<tr>
+<td>alibaba/open-code-review</td>
+<td>Go</td>
+<td><span class="stars">893</span></td>
+<td>阿里规模化落地的混合架构代码审查（确定性流水线 + LLM Agent）</td>
+<td>https://github.com/alibaba/open-code-review</td>
+</tr>
+<tr>
+<td>ChromeDevTools/chrome-devtools-mcp</td>
+<td>TypeScript</td>
+<td><span class="stars">664</span></td>
+<td>面向 coding agent 的 Chrome DevTools MCP</td>
+<td>https://github.com/ChromeDevTools/chrome-devtools-mcp</td>
+</tr>
+<tr>
+<td>we-promise/sure</td>
+<td>Ruby</td>
+<td><span class="stars">659</span></td>
+<td>人人可用的个人理财 App</td>
+<td>https://github.com/we-promise/sure</td>
+</tr>
+<tr>
+<td>tradermonty/claude-trading-skills</td>
+<td>Python</td>
+<td><span class="stars">553</span></td>
+<td>面向投资者的 Claude Code 炒股/分析 skills</td>
+<td>https://github.com/tradermonty/claude-trading-skills</td>
+</tr>
+<tr>
+<td>backnotprop/plannotator</td>
+<td>TypeScript</td>
+<td><span class="stars">408</span></td>
+<td>Agent 工作区：规划/标注/评审代码一键回传</td>
+<td>https://github.com/backnotprop/plannotator</td>
+</tr>
+<tr>
+<td>dream-num/univer</td>
+<td>TypeScript</td>
+<td><span class="stars">495</span></td>
+<td>用 Office SDK 自建 AI 办公（编辑/计算/协作）</td>
+<td>https://github.com/dream-num/univer</td>
+</tr>
+<tr>
+<td>Likely7/Veyra-NRVideo</td>
+<td>C++</td>
+<td><span class="stars">420</span></td>
+<td>带 DLSS5 超分/帧生成的 Windows 视频播放增强</td>
+<td>https://github.com/Likely7/Veyra-NRVideo</td>
+</tr>
+<tr>
+<td>louislam/uptime-kuma</td>
+<td>JavaScript</td>
+<td><span class="stars">430</span></td>
+<td>漂亮的自托管监控工具</td>
+<td>https://github.com/louislam/uptime-kuma</td>
+</tr>
+<tr>
+<td>martin-olivier/airgorah</td>
+<td>Rust</td>
+<td><span class="stars">270</span></td>
+<td>WiFi 安全审计软件</td>
+<td>https://github.com/martin-olivier/airgorah</td>
+</tr>
+<tr>
+<td>JuliusBrussee/caveman</td>
+<td>Go</td>
+<td><span class="stars">227</span></td>
+<td>用"穴居人"式表达给 coding agent 砍 65% token</td>
+<td>https://github.com/JuliusBrussee/caveman</td>
+</tr>
+<tr>
+<td>ashhart/TensorFold</td>
+<td>Zig</td>
+<td><span class="stars">37</span></td>
+<td>Metal/CUDA/Vulkan 上的 LLM 推理引擎</td>
+<td>https://github.com/ashhart/TensorFold</td>
+</tr>
+<tr>
+<td>QwenLM/qwen-code</td>
+<td>TypeScript</td>
+<td><span class="stars">64</span></td>
+<td>终端里的开源 AI 编程 Agent</td>
+<td>https://github.com/QwenLM/qwen-code</td>
+</tr>
+<tr>
+<td>ag-ui-protocol/ag-ui</td>
+<td>TypeScript</td>
+<td><span class="stars">9</span></td>
+<td>Agent-User 交互协议，把 Agent 接入前端</td>
+<td>https://github.com/ag-ui-protocol/ag-ui</td>
+</tr>
+<tr>
+<td>Tencent/LoopForge</td>
+<td>Go</td>
+<td><span class="stars">33</span></td>
+<td>自托管的 coding-agent 交付工作流（含人工审批闸）</td>
+<td>https://github.com/Tencent/LoopForge</td>
+</tr>
+</tbody></table>
+<h3>分语言趋势精选（去重，补充总榜未覆盖）</h3>
+<table><thead><tr>
+<th>语言</th>
+<th>项目</th>
+<th>今日★</th>
+<th>一句话说明</th>
+<th>链接</th>
+</tr></thead><tbody>
+<tr>
+<td>Rust</td>
+<td>ModernRelay/omnigraph</td>
+<td><span class="stars">217</span></td>
+<td>对象存储原生的图数据库，支持分支与类型化本体</td>
+<td>https://github.com/ModernRelay/omnigraph</td>
+</tr>
+<tr>
+<td>Rust</td>
+<td>block/buzz</td>
+<td><span class="stars">277</span></td>
+<td>Block 的"蜂群"通信平台</td>
+<td>https://github.com/block/buzz</td>
+</tr>
+<tr>
+<td>Rust</td>
+<td>aaif-goose/goose</td>
+<td><span class="stars">72</span></td>
+<td>可扩展的开源 AI Agent（不止代码补全）</td>
+<td>https://github.com/aaif-goose/goose</td>
+</tr>
+<tr>
+<td>Java</td>
+<td>yuliskov/SmartTube</td>
+<td><span class="stars">49</span></td>
+<td>Android TV 自定义规则看媒体</td>
+<td>https://github.com/yuliskov/SmartTube</td>
+</tr>
+<tr>
+<td>Java</td>
+<td>jeecgboot/JeecgBoot</td>
+<td><span class="stars">19</span></td>
+<td>免费开源 AI 低代码平台（建表/前后端/流程全自动）</td>
+<td>https://github.com/jeecgboot/JeecgBoot</td>
+</tr>
+<tr>
+<td>Java</td>
+<td>Anuken/Mindustry</td>
+<td><span class="stars">23</span></td>
+<td>自动化塔防 RTS 游戏</td>
+<td>https://github.com/Anuken/Mindustry</td>
+</tr>
+<tr>
+<td>Go</td>
+<td>tailscale/tailcat</td>
+<td><span class="stars">488</span></td>
+<td>走 Tailscale 数据平面的 netcat（无需控制面）</td>
+<td>https://github.com/tailscale/tailcat</td>
+</tr>
+<tr>
+<td>Go</td>
+<td>netbirdio/netbird</td>
+<td><span class="stars">25</span></td>
+<td>基于身份 Zero Trust 组网，连人/机/AI Agent</td>
+<td>https://github.com/netbirdio/netbird</td>
+</tr>
+<tr>
+<td>Python</td>
+<td>Alishahryar1/free-claude-code</td>
+<td><span class="stars">366</span></td>
+<td>终端里免费用 Claude Code/Codex/Antigravity 等多 harness</td>
+<td>https://github.com/Alishahryar1/free-claude-code</td>
+</tr>
+<tr>
+<td>Python</td>
+<td>anthropics/claude-plugins-official</td>
+<td><span class="stars">136</span></td>
+<td>Anthropic 官方维护的 Claude Code 插件目录</td>
+<td>https://github.com/anthropics/claude-plugins-official</td>
+</tr>
+<tr>
+<td>Python</td>
+<td>NVIDIA/SkillEvaluator</td>
+<td><span class="stars">133</span></td>
+<td>评估 AI Agent skills 的多级框架（质量门 + 语义重叠检测）</td>
+<td>https://github.com/NVIDIA/SkillEvaluator</td>
+</tr>
+<tr>
+<td>Python</td>
+<td>LibreTranslate/LibreTranslate</td>
+<td><span class="stars">130</span></td>
+<td>免费开源、可自托管离线的机翻 API</td>
+<td>https://github.com/LibreTranslate/LibreTranslate</td>
+</tr>
+<tr>
+<td>C</td>
+<td>JustVugg/colibri</td>
+<td><span class="stars">313</span></td>
+<td>分层 MoE 推理引擎：热专家上 GPU、温放内存、冷从 NVMe 流式</td>
+<td>https://github.com/JustVugg/colibri</td>
+</tr>
+<tr>
+<td>C</td>
+<td>semgrep/semgrep</td>
+<td><span class="stars">37</span></td>
+<td>多语言轻量静态分析，用类源码 pattern 找缺陷</td>
+<td>https://github.com/semgrep/semgrep</td>
+</tr>
+<tr>
+<td>C</td>
+<td>libsdl-org/SDL</td>
+<td><span class="stars">4</span></td>
+<td>Simple DirectMedia Layer 多媒体库</td>
+<td>https://github.com/libsdl-org/SDL</td>
+</tr>
+<tr>
+<td>TypeScript</td>
+<td>openai/codex-security</td>
+<td><span class="stars">595</span></td>
+<td>OpenAI 的 Codex 安全 CLI + TS SDK（发现/验证/修复漏洞）</td>
+<td>https://github.com/openai/codex-security</td>
+</tr>
+<tr>
+<td>TypeScript</td>
+<td>CopilotKit/OpenBot</td>
+<td><span class="stars">206</span></td>
+<td>每个 AI 同事独立拥有浏览器/文件/工具的开源 coworker</td>
+<td>https://github.com/CopilotKit/OpenBot</td>
+</tr>
+</tbody></table>
+<hr>
+</section>
+<section class="card "><h2>Hacker News 头条（front_page，取前 15）</h2>
+<table><thead><tr>
+<th>标题</th>
+<th>分数</th>
+<th>评论</th>
+<th>链接</th>
+</tr></thead><tbody>
+<tr>
+<td>SpaceX catches the Starship to end Flight 15</td>
+<td><span class="stars">700</span></td>
+<td>464</td>
+<td>https://www.spacex.com/launches/starship-flight-15</td>
+</tr>
+<tr>
+<td>Lovable apps expose passport details and 200K+ private messages</td>
+<td><span class="stars">644</span></td>
+<td>272</td>
+<td>https://www.crissyfield.de/research/lovable-en/</td>
+</tr>
+<tr>
+<td>Why get an expensive Pi when I have an old phone?</td>
+<td><span class="stars">509</span></td>
+<td>283</td>
+<td>https://so.long.thanks.fish/why-pi-when-i-have-an-old-phone/</td>
+</tr>
+<tr>
+<td>Tech companies are trying to shift the concept of privacy again</td>
+<td><span class="stars">464</span></td>
+<td>175</td>
+<td>https://www.eff.org/deeplinks/2026/11/tech-companies-are-trying-shift-entire-concept-privacy-again</td>
+</tr>
+<tr>
+<td>KDE: The documentary [video]</td>
+<td><span class="stars">384</span></td>
+<td>83</td>
+<td>https://tube.kockatoo.org/w/fFinNHfanLT7aBEb2B8y4c</td>
+</tr>
+<tr>
+<td>Italy fines Meta $887M over Android users' data access</td>
+<td><span class="stars">334</span></td>
+<td>223</td>
+<td>https://www.reuters.com/world/italy-fines-meta-887-million-over-android-users-data-access-2026-11-14/</td>
+</tr>
+<tr>
+<td>A family tree of software job titles</td>
+<td><span class="stars">207</span></td>
+<td>101</td>
+<td>https://zwischenzugs.com/2026/11/03/a-family-tree-of-software-job-titles/</td>
+</tr>
+<tr>
+<td>PyPI's redesigned project pages with clearer security signals are now live</td>
+<td><span class="stars">203</span></td>
+<td>93</td>
+<td>https://blog.pypi.org/posts/2026-11-06-ui-updates-complete/</td>
+</tr>
+<tr>
+<td>LinkedIn, Monster take down 1000+ fake job postings</td>
+<td><span class="stars">188</span></td>
+<td>103</td>
+<td>https://www.cbc.ca/news/canada/linkedin-monster-take-down-over-1-000-fake-job-postings-after-cbc-investigation-9.7415379</td>
+</tr>
+<tr>
+<td>Generative AI uses more energy on non-English text</td>
+<td><span class="stars">177</span></td>
+<td>97</td>
+<td>https://news.umich.edu/generative-ai-uses-more-energy-on-non-english-text/</td>
+</tr>
+<tr>
+<td>Nvidia deliberately kept GPU prices high via circular financing</td>
+<td><span class="stars">177</span></td>
+<td>95</td>
+<td>https://www.techspot.com/news/114558-nvidia-deliberately-kept-gpu-prices-high-through-circular.html</td>
+</tr>
+<tr>
+<td>Show HN: DeepSeek V3 in ~200 lines of pure Jax</td>
+<td><span class="stars">175</span></td>
+<td>8</td>
+<td>https://github.com/Vaibhaav-Tiwari/deepseek-v3-jax</td>
+</tr>
+<tr>
+<td>Advancing science/engineering with Antigravity's /teamwork</td>
+<td><span class="stars">165</span></td>
+<td>37</td>
+<td>https://research.google/blog/advancing-science-engineering-with-antigravitys-teamwork-feature/</td>
+</tr>
+<tr>
+<td>Project Zero will disclose vulns 90 days after reporting</td>
+<td><span class="stars">161</span></td>
+<td>43</td>
+<td>https://projectzero.google/2026/11/disclosure-policy.html</td>
+</tr>
+<tr>
+<td>Show HN: terminal-native idle factory game in Rust (ratatui)</td>
+<td><span class="stars">137</span></td>
+<td>28</td>
+<td>https://gitlab.com/snipedbywifi/terminactory</td>
+</tr>
+</tbody></table>
+<hr>
+</section>
+<section class="card "><h2>leijuan 周报（linux_china，最新 8 条）</h2>
+<p class="note">站点最新帖仍停留在 11-08，本周聚合重点不变，按最新 8 条收录。</p>
+<table><thead><tr>
+<th>日期</th>
+<th>标题</th>
+<th>链接</th>
+</tr></thead><tbody>
+<tr>
+<td>2026-11-08</td>
+<td>Tech Weekly 2026-11-08：FastAPI Cloud、Libghostty 1.0、DeepSeek Super-agent、Technology Radar Vol 35</td>
+<td>https://leijuan.davao.page/blog/2026-11-08-tech-weekly</td>
+</tr>
+<tr>
+<td>2026-11-03</td>
+<td>FastAPI Cloud 对外开发（快速部署 FastAPI 应用）</td>
+<td>https://leijuan.davao.page/blog/2026-11-03-fastapi-cloud</td>
+</tr>
+<tr>
+<td>2026-11-01</td>
+<td>Tech Weekly 2026-11-01：GPT-6.1 Terra、Ghostty 1.4、Polars 2.1、Kafka 4.4</td>
+<td>https://leijuan.davao.page/blog/2026-11-01-tech-weekly</td>
+</tr>
+<tr>
+<td>2026-10-31</td>
+<td>Confluent Kafka Rust Client 1.0（轻量 Rust Kafka 客户端）</td>
+<td>https://leijuan.davao.page/blog/2026-10-31-kafka-rust-client</td>
+</tr>
+<tr>
+<td>2026-10-29</td>
+<td>PGX：为 AI Agent 快速创建独立 PostgreSQL 数据库（单运行时上千临时库）</td>
+<td>https://leijuan.davao.page/blog/2026-10-29-pgx</td>
+</tr>
+<tr>
+<td>2026-10-25</td>
+<td>Tech Weekly 2026-10-25：DuckDB 2.0、Kimi K3.1 Pro</td>
+<td>https://leijuan.davao.page/blog/2026-10-25-tech-weekly</td>
+</tr>
+<tr>
+<td>2026-10-18</td>
+<td>Tech Weekly 2026-10-18：Gemini 4 Argon、Jev 1.14.0、DeepSeek V4.1 Flash-1017</td>
+<td>https://leijuan.davao.page/blog/2026-10-18-tech-weekly</td>
+</tr>
+<tr>
+<td>2026-10-13</td>
+<td>将 DuckDB 数据库保存在 S3 Bucket 中（云端存储）</td>
+<td>https://leijuan.davao.page/blog/2026-10-13-duckdb-with-s3</td>
+</tr>
+</tbody></table>
+<hr>
+</section>
+<section class="card "><h2>今日 AI / 云计算 / 大数据重大发布（WebSearch 补充）</h2>
+<p>- <strong>华为云 openPangu-2.1-Pro 旗舰开源模型今日（11-15）上线</strong>，主攻鸿蒙 ArkTS 代码生成；AgentArts / CodeArts / OfficeAce 同步接入。（来源：华为云 / 证券时报）</p>
+<p>- <strong>llama.cpp 发布 v1 + ggml 1.0.0</strong>：支持 MoE offload 与 <code>--moe-cache-mib</code> LRU 缓存，可跑超显存模型；ggml 结束 0.x 进入 API 稳定期。</p>
+<p>- <strong>QuixiAI 推 QuixiGate</strong>：Rust 写的 LLM 网关，8ms 冷启动、24MiB RAM，JSON 吞吐约 LiteLLM 的 29 倍（含 OpenTelemetry / Phoenix）。</p>
+<p>- <strong>联想"万全混合 Token 工厂"落子张家口</strong>：一期 100MW / 15000P，目标年产出 2 千万亿 token、单百万 token 成本降 70%，2030 扩约 10 倍。</p>
+<p>- <strong>Moonshot AI（Kimi）拆除开曼架构、筹备 2027 年初港股 IPO</strong>；此前 Pre-IPO 估值约 500 亿美元。</p>
+<p>- <strong>DeepSeek 开放 App 全量能力为 API</strong>：搜索/文件读取/OCR/语音分开计费（搜索 5 元/千次、OCR 1.5 元/千页、ASR 0.39 元/小时、TTS 1.5 元/万字符）。</p>
+<p>- <strong>Cursor 披露供应链事件</strong>：攻击者用 Fireworks AI 泄露的密钥复制 coding-agent 轨迹数据，恶意 Claude Code 扩展存活约 11 小时。</p>
+<p>- <strong>NVIDIA 教程</strong>：7530 亿参数 GLM-5.3 跨两台 DGX Station（ConnectX-8）部署，NVFP4 检查点约 464GB，并发 16 下峰值 607.8 tok/s。</p>
+<p>- <strong>美联储将 AI 列为最频繁提及的风险</strong>；韩国 11 月前 10 日芯片出口同比 +331%。</p>
+<hr>
+</section>
+<section class="card "><h2>按方向速览</h2>
+<table><thead><tr>
+<th>方向</th>
+<th>代表项目 / 事件</th>
+<th>要点</th>
+<th>链接</th>
+</tr></thead><tbody>
+<tr>
+<td><span class="tag tag-ai">AI</span></td>
+<td>GoogleChrome/modern-web-guidance-src、openai/codex-security、alibaba/open-code-review</td>
+<td>Agent/代码审查工具链霸榜，今日合计数千新增 star</td>
+<td>https://github.com/GoogleChrome/modern-web-guidance-src</td>
+</tr>
+<tr>
+<td><span class="tag tag-ai">AI</span></td>
+<td>openPangu-2.1-Pro、llama.cpp v1、QuixiGate、LexiSuite</td>
+<td>国产开源模型今日上线 + 本地推理引擎密集迭代</td>
+<td>https://www.c114pro.com/ainews/210224.html</td>
+</tr>
+<tr>
+<td><span class="tag tag-ai">AI</span></td>
+<td>DeepSeek App API、Moonshot 港股 IPO、联想 Token 工厂</td>
+<td>模型能力平台化开放 + 算力成本快速下探</td>
+<td>https://sflood.com/en/daily/ai-2026-11-15</td>
+</tr>
+<tr>
+<td><span class="tag tag-bigdata">大数据</span></td>
+<td>DuckDB 2.0、Polars 2.1、Kafka 4.4、Confluent Kafka Rust Client 1.0、PGX</td>
+<td>分析引擎与 Agent 友好型数据底座持续演进（leijuan 周报聚合）</td>
+<td>https://leijuan.davao.page/blog/2026-10-25-tech-weekly</td>
+</tr>
+<tr>
+<td><span class="tag tag-cloud">云计算</span></td>
+<td>tailscale/tailcat、netbirdio/netbird、FastAPI Cloud、联想 Token 工厂</td>
+<td>零信任组网 + Serverless 部署 + 自建算力成为热点</td>
+<td>https://github.com/tailscale/tailcat</td>
+</tr>
+<tr>
+<td><span class="tag tag-java">Java</span></td>
+<td>jeecgboot/JeecgBoot、yuliskov/SmartTube、Anuken/Mindustry</td>
+<td>AI 低代码平台与 Android 应用走俏</td>
+<td>https://github.com/jeecgboot/JeecgBoot</td>
+</tr>
+<tr>
+<td><span class="tag tag-rust">Rust</span></td>
+<td>airgorah、omnigraph、block/buzz、goose、QuixiGate</td>
+<td>安全审计 / 图数据库 / Agent / 推理网关全面开花</td>
+<td>https://github.com/martin-olivier/airgorah</td>
+</tr>
+<tr>
+<td><span class="tag tag-linux">Linux</span></td>
+<td>KDE: The documentary、Libghostty 1.0、Ghostty 1.4、immortalwrt</td>
+<td>桌面生态与终端模拟器持续更新（HN + leijuan）</td>
+<td>https://tube.kockatoo.org/w/fFinNHfanLT7aBEb2B8y4c</td>
+</tr>
+<tr>
+<td><span class="tag tag-other">其他</span></td>
+<td>Lovable 泄露私信、Project Zero 90 天披露、Cursor 供应链事件、PyPI 安全页改版</td>
+<td>隐私与供应链安全是今日社区主线</td>
+<td>https://www.crissyfield.de/research/lovable-en/</td>
+</tr>
+</tbody></table>
+</section>
+</div>
+</body>
+</html>

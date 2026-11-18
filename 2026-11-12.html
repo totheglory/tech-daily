@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>技术研发日报 2026-11-12</title>
+<style>
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --ink:#1f2328; --muted:#5b6573;
+  --line:#e3e7ec; --accent:#2f6feb; --accent-soft:#eaf1ff;
+  --shadow:0 1px 3px rgba(16,24,40,.06),0 6px 20px rgba(16,24,40,.05);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:14px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;}
+.wrap{max-width:1120px;margin:0 auto;padding:28px 20px 56px}
+h1{font-size:26px;margin:0 0 6px;letter-spacing:.3px}
+h2{font-size:19px;margin:0;padding:0 0 12px;border-bottom:1px solid var(--line)}
+h3{font-size:15px;margin:24px 0 10px;color:#30363d}
+.wrap>header{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:24px 26px;margin-bottom:18px;box-shadow:var(--shadow)}
+.subtitle{color:var(--muted);font-size:12.5px;margin:0}
+.note{color:var(--muted);font-size:12px;margin:12px 0 0;line-height:1.7}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:22px 26px;margin-bottom:18px;box-shadow:var(--shadow)}
+.hl{background:linear-gradient(180deg,#f0f6ff,#ffffff);border:1px solid #cfe0ff}
+.hl h2{border-bottom-color:#cfe0ff}
+ol.takeaways{margin:16px 0 0;padding-left:22px}
+ol.takeaways li{margin:9px 0}
+ol.takeaways li::marker{color:var(--accent);font-weight:700}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:#f7f9fb;color:#3b444f;font-weight:600;white-space:nowrap;font-size:12.5px}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:#fafbfd}
+td a{color:var(--accent);text-decoration:none;white-space:nowrap}
+td a:hover{text-decoration:underline}
+code{background:#f0f2f5;border-radius:4px;padding:1px 5px;font-size:12px;color:#b3306a}
+.tag{display:inline-block;font-size:11px;font-weight:600;line-height:1.5;
+  padding:1px 8px;border-radius:20px;white-space:nowrap;margin:1px 3px 1px 0}
+.tag-ai{background:#efe9ff;color:#6d3fd4}
+.tag-bigdata{background:#e6f0ff;color:#1d5fcb}
+.tag-cloud{background:#e2f5f4;color:#0e7c74}
+.tag-java{background:#ffede1;color:#c2571a}
+.tag-rust{background:#fbe9e7;color:#b23a2b}
+.tag-linux{background:#fff3d6;color:#9a6700}
+.tag-other{background:#eef1f4;color:#57606a}
+.stars{color:#b23a2b;font-weight:600}
+footer{text-align:center;color:var(--muted);font-size:12px;margin-top:26px}
+hr{border:0;border-top:1px dashed var(--line);margin:4px 0}
+@media(max-width:760px){
+  .wrap{padding:16px 12px 40px}
+  .card,header{padding:16px}
+  table{display:block;overflow-x:auto;white-space:nowrap}
+  h1{font-size:22px}
+}
+@media print{
+  body{background:#fff}.card,header{box-shadow:none;break-inside:avoid}
+  td a{color:#1f2328}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><h1>技术研发日报 2026-11-12</h1>
+</header>
+<p class="note">拉取源：GitHub Trending（daily + Rust/Java/Go/Python/C/TypeScript 分语言页）、Hacker News front_page API（20 条）、leijuan（linux_china）博客最新 8 条、WebSearch 补充当天 AI/云/大数据重大发布。</p>
+<p class="note">注：x.com 因强制登录未抓取，已用 HN + leijuan + GitHub 等价覆盖社区热点。</p>
+<section class="card hl"><h2>今日最值得看</h2>
+<ol class="takeaways">
+<li><strong>谷歌发布首款决策模型 Gemini Decision 1 + Decisions API</strong>：不逐 token 生成，单次前向传播对最多 1000 个封闭式问题（是/否、多选、打分）评分，输入仅 $0.10/百万 token（约 Flash-Lite 的 1/5），150–250ms 返回置信度，把"分类/评分/选择"从生成式流程里剥离。</li>
+<li><strong>AWS 发布 AWS Emulator（本地模拟 200+ 云服务）</strong>，且公开称"由 AI 智能体编写、团队未编写或审查代码"——云工程首次把"AI 端到端交付软件"从实验室推到公开产品线，代码审查责任框架被重写。</li>
+<li><strong>国内大模型密集上新</strong>：百度文心 5.5 Flash Preview（2800 亿 MoE、百万上下文）、阿里 Qwen4 预览版上线 Token Plan、美团 LongCat-2.5（1.6T 参数）MIT 开源；Databricks Genie 智能体升级到可无人执行多步长任务。</li>
+<li><strong>Python 社区重大损失</strong>：Tim Peters 逝世（1952–2026，Python 之"禅"作者），HN 833 分悼念。</li>
+<li><strong>安全与算力热点</strong>：Fireworks AI 数据泄露扩大至客户数据集与部分模型权重；微软拟 1170 亿美元自建配套供电数据中心（Project Kilby）；HN 热议 WSJ 报道 Nvidia 据传拟罢免黄仁勋（629 评论）。</li>
+</ol>
+<hr>
+</section>
+<section class="card "><h2>GitHub 热门</h2>
+<h3>每日总榜（daily, top 10）</h3>
+<table><thead><tr>
+<th>项目</th>
+<th>语言</th>
+<th>今日新增 ★</th>
+<th>一句话说明</th>
+<th>链接</th>
+</tr></thead><tbody>
+<tr>
+<td>meta/astryx</td>
+<td>TypeScript</td>
+<td><span class="stars">2,776</span></td>
+<td>可定制、agent-ready 的开源设计系统</td>
+<td>https://github.com/meta/astryx</td>
+</tr>
+<tr>
+<td>ZhuLinsen/daily_stock_analysis</td>
+<td>Python</td>
+<td><span class="stars">278</span></td>
+<td>LLM 驱动的多市场股票智能分析系统</td>
+<td>https://github.com/ZhuLinsen/daily_stock_analysis</td>
+</tr>
+<tr>
+<td>GoogleChrome/modern-web-guidance-src</td>
+<td>TypeScript</td>
+<td><span class="stars">159</span></td>
+<td>Chrome 团队现代 Web 开发指导源文件</td>
+<td>https://github.com/GoogleChrome/modern-web-guidance-src</td>
+</tr>
+<tr>
+<td>shadcn/improve</td>
+<td>TypeScript</td>
+<td><span class="stars">361</span></td>
+<td>用最强模型审代码、为便宜模型写执行计划</td>
+<td>https://github.com/shadcn/improve</td>
+</tr>
+<tr>
+<td>addyosmani/agent-skills</td>
+<td>JavaScript</td>
+<td><span class="stars">787</span></td>
+<td>面向 AI 编码智能体的生产级 engineering skills</td>
+<td>https://github.com/addyosmani/agent-skills</td>
+</tr>
+<tr>
+<td>vercel-labs/agent-browser</td>
+<td>Rust</td>
+<td><span class="stars">708</span></td>
+<td>面向 AI 智能体的浏览器自动化 CLI</td>
+<td>https://github.com/vercel-labs/agent-browser</td>
+</tr>
+<tr>
+<td>we-promise/sure</td>
+<td>Ruby</td>
+<td><span class="stars">1,078</span></td>
+<td>人人可用的个人理财 App（by everyone）</td>
+<td>https://github.com/we-promise/sure</td>
+</tr>
+<tr>
+<td>homeassistant-ai/ha-mcp</td>
+<td>Python</td>
+<td><span class="stars">645</span></td>
+<td>用 Claude/ChatGPT 等配置与自动化 Home Assistant</td>
+<td>https://github.com/homeassistant-ai/ha-mcp</td>
+</tr>
+<tr>
+<td>openai/codex-security</td>
+<td>TypeScript</td>
+<td><span class="stars">52</span></td>
+<td>OpenAI 代码安全 CLI + TS SDK，发现/验证/修复漏洞</td>
+<td>https://github.com/openai/codex-security</td>
+</tr>
+<tr>
+<td>TheAlgorithms/Java</td>
+<td>Java</td>
+<td><span class="stars">51</span></td>
+<td>用 Java 实现全部算法</td>
+<td>https://github.com/TheAlgorithms/Java</td>
+</tr>
+</tbody></table>
+<h3>Rust（top 5）</h3>
+<table><thead><tr>
+<th>项目</th>
+<th>今日新增 ★</th>
+<th>一句话说明</th>
+<th>链接</th>
+</tr></thead><tbody>
+<tr>
+<td>ruvnet/RuView</td>
+<td><span class="stars">222</span></td>
+<td>用普通 WiFi 信号做实时空间智能、生命体征监测（无摄像头）</td>
+<td>https://github.com/ruvnet/RuView</td>
+</tr>
+<tr>
+<td>tokio-rs/topcoat</td>
+<td><span class="stars">451</span></td>
+<td>tokio 出品、开箱即用的 Web 应用框架</td>
+<td>https://github.com/tokio-rs/topcoat</td>
+</tr>
+<tr>
+<td>claration/impactor</td>
+<td><span class="stars">22</span></td>
+<td>跨平台 iOS/iPadOS/tvOS 侧载工具（原 PlumeImpactor）</td>
+<td>https://github.com/claration/impactor</td>
+</tr>
+<tr>
+<td>GyulyVGC/sniffnet</td>
+<td><span class="stars">90</span></td>
+<td>图形化监控网络流量</td>
+<td>https://github.com/GyulyVGC/sniffnet</td>
+</tr>
+<tr>
+<td>ShayanAbbas1/dbdelve</td>
+<td><span class="stars">101</span></td>
+<td>Rust + GPUI 写的轻量数据库客户端</td>
+<td>https://github.com/ShayanAbbas1/dbdelve</td>
+</tr>
+</tbody></table>
+<h3>Java（top 5）</h3>
+<table><thead><tr>
+<th>项目</th>
+<th>今日新增 ★</th>
+<th>一句话说明</th>
+<th>链接</th>
+</tr></thead><tbody>
+<tr>
+<td>jeecgboot/JeecgBoot</td>
+<td><span class="stars">12</span></td>
+<td>免费开源 AI 低代码平台，AI Skills 一句话生成完整系统</td>
+<td>https://github.com/jeecgboot/JeecgBoot</td>
+</tr>
+<tr>
+<td>jenkinsci/jenkins</td>
+<td><span class="stars">15</span></td>
+<td>Jenkins 自动化服务器</td>
+<td>https://github.com/jenkinsci/jenkins</td>
+</tr>
+<tr>
+<td>zaproxy/zaproxy</td>
+<td><span class="stars">12</span></td>
+<td>Checkmarx 的 ZAP 核心安全测试项目</td>
+<td>https://github.com/zaproxy/zaproxy</td>
+</tr>
+<tr>
+<td>spring-projects/spring-framework</td>
+<td><span class="stars">8</span></td>
+<td>Spring Framework</td>
+<td>https://github.com/spring-projects/spring-framework</td>
+</tr>
+<tr>
+<td>agentscope-ai/agentscope-java</td>
+<td><span class="stars">17</span></td>
+<td>构建分布式、生产级、长运行智能体</td>
+<td>https://github.com/agentscope-ai/agentscope-java</td>
+</tr>
+</tbody></table>
+<h3>Go（top 5）</h3>
+<table><thead><tr>
+<th>项目</th>
+<th>今日新增 ★</th>
+<th>一句话说明</th>
+<th>链接</th>
+</tr></thead><tbody>
+<tr>
+<td>multica-ai/multica</td>
+<td><span class="stars">200</span></td>
+<td>让人类与 AI 智能体像一支团队一样协作（开源可自托管）</td>
+<td>https://github.com/multica-ai/multica</td>
+</tr>
+<tr>
+<td>router-for-me/CLIProxyAPI</td>
+<td><span class="stars">129</span></td>
+<td>把 Antigravity/Codex/Claude Code 等包装成统一兼容 API</td>
+<td>https://github.com/router-for-me/CLIProxyAPI</td>
+</tr>
+<tr>
+<td>Tencent/WeKnora</td>
+<td><span class="stars">104</span></td>
+<td>开源 LLM 知识平台：文档→RAG + 自主推理 Agent + 自维护 Wiki</td>
+<td>https://github.com/Tencent/WeKnora</td>
+</tr>
+<tr>
+<td>Tencent/LoopForge</td>
+<td><span class="stars">94</span></td>
+<td>自托管编码智能体交付工作流（含人工审批闸）</td>
+<td>https://github.com/Tencent/LoopForge</td>
+</tr>
+<tr>
+<td>agent-substrate/substrate</td>
+<td><span class="stars">90</span></td>
+<td>Agent Substrate 核心系统</td>
+<td>https://github.com/agent-substrate/substrate</td>
+</tr>
+</tbody></table>
+<h3>Python（top 5，去重后）</h3>
+<table><thead><tr>
+<th>项目</th>
+<th>今日新增 ★</th>
+<th>一句话说明</th>
+<th>链接</th>
+</tr></thead><tbody>
+<tr>
+<td>browser-use/browser-use</td>
+<td><span class="stars">172</span></td>
+<td>开源 Python 库，构建 AI 浏览器智能体 + 云端 API</td>
+<td>https://github.com/browser-use/browser-use</td>
+</tr>
+<tr>
+<td>soxoj/maigret</td>
+<td><span class="stars">260</span></td>
+<td>按用户名在 6K+ 网站收集人物档案（OSINT）</td>
+<td>https://github.com/soxoj/maigret</td>
+</tr>
+<tr>
+<td>sgl-project/sglang-omni</td>
+<td><span class="stars">15</span></td>
+<td>面向交互式超级智能系统的高性能推理运行时</td>
+<td>https://github.com/sgl-project/sglang-omni</td>
+</tr>
+<tr>
+<td>ZhuLinsen/daily_stock_analysis</td>
+<td><span class="stars">278</span></td>
+<td>LLM 多市场股票智能分析系统（见总榜）</td>
+<td>https://github.com/ZhuLinsen/daily_stock_analysis</td>
+</tr>
+<tr>
+<td>homeassistant-ai/ha-mcp</td>
+<td><span class="stars">645</span></td>
+<td>Home Assistant 的 MCP 接入（见总榜）</td>
+<td>https://github.com/homeassistant-ai/ha-mcp</td>
+</tr>
+</tbody></table>
+<h3>C（top 5）</h3>
+<table><thead><tr>
+<th>项目</th>
+<th>今日新增 ★</th>
+<th>一句话说明</th>
+<th>链接</th>
+</tr></thead><tbody>
+<tr>
+<td>DarkFlippers/unleashed-firmware</td>
+<td><span class="stars">14</span></td>
+<td>Flipper Zero 解锁固件</td>
+<td>https://github.com/DarkFlippers/unleashed-firmware</td>
+</tr>
+<tr>
+<td>ExistentialAudio/BlackHole</td>
+<td><span class="stars">5</span></td>
+<td>macOS 零延迟音频环回驱动</td>
+<td>https://github.com/ExistentialAudio/BlackHole</td>
+</tr>
+<tr>
+<td>ValdikSS/GoodbyeDPI</td>
+<td><span class="stars">7</span></td>
+<td>Windows 深度包检测（DPI）规避工具</td>
+<td>https://github.com/ValdikSS/GoodbyeDPI</td>
+</tr>
+<tr>
+<td>HarbourMasters/Shipwright</td>
+<td><span class="stars">29</span></td>
+<td>《时之笛》逆向工程重编译项目</td>
+<td>https://github.com/HarbourMasters/Shipwright</td>
+</tr>
+<tr>
+<td>microsoft/PowerToys</td>
+<td><span class="stars">61</span></td>
+<td>Windows 生产力增强工具集</td>
+<td>https://github.com/microsoft/PowerToys</td>
+</tr>
+</tbody></table>
+<h3>TypeScript（top 5，去重后）</h3>
+<table><thead><tr>
+<th>项目</th>
+<th>今日新增 ★</th>
+<th>一句话说明</th>
+<th>链接</th>
+</tr></thead><tbody>
+<tr>
+<td>ranxianglei/billion-context</td>
+<td><span class="stars">710</span></td>
+<td>上下文压缩插件：月级长会话、100K 窗口省 5 倍 token</td>
+<td>https://github.com/ranxianglei/billion-context</td>
+</tr>
+<tr>
+<td>backnotprop/plannotator</td>
+<td><span class="stars">55</span></td>
+<td>面向智能体的工作区：规划/标注/评审/一键反馈</td>
+<td>https://github.com/backnotprop/plannotator</td>
+</tr>
+<tr>
+<td>google-labs-code/stitch-skills</td>
+<td><span class="stars">19</span></td>
+<td>配合 Stitch MCP 的 Agent Skills 库（开放标准）</td>
+<td>https://github.com/google-labs-code/stitch-skills</td>
+</tr>
+<tr>
+<td>garrytan/gbrain</td>
+<td><span class="stars">243</span></td>
+<td>OpenClaw/Hermes 智能体的"大脑"配置</td>
+<td>https://github.com/garrytan/gbrain</td>
+</tr>
+<tr>
+<td>dream-num/univer</td>
+<td><span class="stars">138</span></td>
+<td>用 Office SDK 把编辑/计算/协作带入产品与 AI 智能体</td>
+<td>https://github.com/dream-num/univer</td>
+</tr>
+</tbody></table>
+<hr>
+</section>
+<section class="card "><h2>Hacker News（front_page, top 15 by points）</h2>
+<table><thead><tr>
+<th>标题</th>
+<th>分数</th>
+<th>评论</th>
+<th>链接</th>
+</tr></thead><tbody>
+<tr>
+<td>My AI agents found an unmapped Maya site?</td>
+<td><span class="stars">918</span></td>
+<td>335</td>
+<td>https://pietromiotti.com/latest/maya-site</td>
+</tr>
+<tr>
+<td>Tim Peters has died</td>
+<td><span class="stars">833</span></td>
+<td>93</td>
+<td>https://discuss.python.org/t/in-memoriam-tim-peters-1952-2026/110028</td>
+</tr>
+<tr>
+<td>AWS emulator</td>
+<td><span class="stars">646</span></td>
+<td>212</td>
+<td>https://github.com/aws/aws-emulator</td>
+</tr>
+<tr>
+<td>Nvidia is preparing to oust Jensen Huang</td>
+<td><span class="stars">427</span></td>
+<td>629</td>
+<td>https://www.wsj.com/business/nvidia-is-preparing-to-oust-nvidia-ceo-jensen-huang-30f421ad</td>
+</tr>
+<tr>
+<td>A false smoke alarm almost drowned Jane Street's only NYC datacenter</td>
+<td><span class="stars">402</span></td>
+<td>199</td>
+<td>https://michael.bacarella.com/2026/11/10/false-smoke-alarm-jane-street-datacenter/</td>
+</tr>
+<tr>
+<td>United Airlines bans AI agents from booking flights on behalf of travelers</td>
+<td><span class="stars">331</span></td>
+<td>313</td>
+<td>https://www.cbsnews.com/news/united-airlines-bans-ai-agents-booking-flights/</td>
+</tr>
+<tr>
+<td>Hyper-Realistic Sand with WebGL2</td>
+<td><span class="stars">300</span></td>
+<td>64</td>
+<td>https://av.github.io/safe-sand/</td>
+</tr>
+<tr>
+<td>Using voltage glitching to unleash the A100 in my mining card</td>
+<td><span class="stars">259</span></td>
+<td>105</td>
+<td>https://blog.kate.land/posts/using-voltage-glitching-to-unlock-the-a100/</td>
+</tr>
+<tr>
+<td>Gemini Decisions API</td>
+<td><span class="stars">249</span></td>
+<td>79</td>
+<td>https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/</td>
+</tr>
+<tr>
+<td>Can a Linear Program Do Weight-Space Programming?</td>
+<td><span class="stars">237</span></td>
+<td>36</td>
+<td>https://nathan.rs/posts/weight-space-lp/</td>
+</tr>
+<tr>
+<td>Atuin Threads: All your agent sessions on every machine</td>
+<td><span class="stars">189</span></td>
+<td>71</td>
+<td>https://blog.atuin.sh/threads-agent-sessions/</td>
+</tr>
+<tr>
+<td>Show HN: Yogurt – Free, private, open-source alternative to Granola</td>
+<td><span class="stars">165</span></td>
+<td>73</td>
+<td>https://github.com/FrigadeHQ/yogurt</td>
+</tr>
+<tr>
+<td>Faster Retrieval for Better, More Efficient RAG</td>
+<td><span class="stars">146</span></td>
+<td>24</td>
+<td>https://machinelearning.apple.com/research/faster-retrieval</td>
+</tr>
+<tr>
+<td>Lock Your GitHub Actions</td>
+<td><span class="stars">102</span></td>
+<td>19</td>
+<td>https://hugovk.dev/blog/2026/lock-github-actions/</td>
+</tr>
+<tr>
+<td>The Utah Teapot</td>
+<td><span class="stars">65</span></td>
+<td>15</td>
+<td>https://graphics.cs.utah.edu/teapot/</td>
+</tr>
+</tbody></table>
+<hr>
+</section>
+<section class="card "><h2>leijuan 技术周报（linux_china，最新 8 条）</h2>
+<table><thead><tr>
+<th>标题</th>
+<th>日期</th>
+<th>链接</th>
+</tr></thead><tbody>
+<tr>
+<td>Tech Weekly 2026-11-08（FastAPI Cloud、Libghostty 1.0、DeepSeek Super-agent、Technology Radar Vol 35）</td>
+<td>2026-11-08</td>
+<td>https://leijuan.davao.page/blog/2026-11-08-tech-weekly</td>
+</tr>
+<tr>
+<td>FastAPI Cloud 对外开发（快速部署 FastAPI 应用）</td>
+<td>2026-11-03</td>
+<td>https://leijuan.davao.page/blog/2026-11-03-fastapi-cloud</td>
+</tr>
+<tr>
+<td>Tech Weekly 2026-11-01（GPT-6.1 Terra、Ghostty 1.4、Polars 2.1、Kafka 4.4）</td>
+<td>2026-11-01</td>
+<td>https://leijuan.davao.page/blog/2026-11-01-tech-weekly</td>
+</tr>
+<tr>
+<td>Confluent Kafka Rust Client 1.0（轻量 Rust Kafka 客户端）</td>
+<td>2026-10-31</td>
+<td>https://leijuan.davao.page/blog/2026-10-31-kafka-rust-client</td>
+</tr>
+<tr>
+<td>PGX：为 AI Agent 快速创建独立的 PostgreSQL 数据库（单运行时承载上千临时库）</td>
+<td>2026-10-29</td>
+<td>https://leijuan.davao.page/blog/2026-10-29-pgx</td>
+</tr>
+<tr>
+<td>Tech Weekly 2026-10-25（DuckDB 2.0、Kimi K3.1 Pro）</td>
+<td>2026-10-25</td>
+<td>https://leijuan.davao.page/blog/2026-10-25-tech-weekly</td>
+</tr>
+<tr>
+<td>Tech Weekly 2026-10-18（Gemini 4 Argon、Jev 1.14.0、DeepSeek V4.1 Flash-1017）</td>
+<td>2026-10-18</td>
+<td>https://leijuan.davao.page/blog/2026-10-18-tech-weekly</td>
+</tr>
+<tr>
+<td>将 DuckDB 数据库保存在 S3 Bucket 中</td>
+<td>2026-10-13</td>
+<td>https://leijuan.davao.page/blog/2026-10-13-duckdb-with-s3</td>
+</tr>
+</tbody></table>
+<hr>
+</section>
+<section class="card "><h2>按方向速览</h2>
+<table><thead><tr>
+<th>方向</th>
+<th>项目/事件</th>
+<th>一句话说明</th>
+<th>链接</th>
+</tr></thead><tbody>
+<tr>
+<td><span class="tag tag-ai">**AI**</span></td>
+<td>Google Gemini Decision 1 + Decisions API</td>
+<td>首款决策模型，单次前向传播评 1000 个封闭式问题，$0.10/百万 token</td>
+<td>https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/</td>
+</tr>
+<tr>
+<td><span class="tag tag-ai">**AI**</span></td>
+<td>Anthropic Claude Sheets / Whiteboards / Meetings（beta）</td>
+<td>把 Claude 搬进表格、白板、会议，IPO 路演期间上线</td>
+<td>https://www.techcrunch.com</td>
+</tr>
+<tr>
+<td><span class="tag tag-ai">**AI**</span></td>
+<td>百度文心 5.5 Flash Preview</td>
+<td>2800 亿 MoE、百万上下文，强化游戏/3D/长周期任务</td>
+<td>https://www.163.com/dy/article/LBH1QE2O0511CPVM.html</td>
+</tr>
+<tr>
+<td><span class="tag tag-ai">**AI**</span></td>
+<td>阿里 Qwen4 即将发布（预览版上线 Token Plan）</td>
+<td>千问办公/Qoder/APP/QwenStudio 已接入</td>
+<td>https://news.qq.com/rain/a/20261112A0344C00</td>
+</tr>
+<tr>
+<td><span class="tag tag-ai">**AI**</span></td>
+<td>美团 LongCat-2.5 权重 MIT 开源</td>
+<td>约 1.6T 参数、48B 激活，Terminal Bench v2.1 达 88.4</td>
+<td>https://venturebeat.com</td>
+</tr>
+<tr>
+<td><span class="tag tag-ai">**AI**</span></td>
+<td>Databricks Genie 智能体升级</td>
+<td>可无人监督执行多步长任务，依托本体体系</td>
+<td>https://so.html5.qq.com/page/real/search_news?docid=70000021_6996af4a8e681152</td>
+</tr>
+<tr>
+<td><span class="tag tag-ai">**AI**</span></td>
+<td>Fireworks AI 数据泄露扩大</td>
+<td>波及客户数据集与部分模型权重，LLMjacking 风险升温</td>
+<td>https://byobot.ai/ai-news/ai-daily-newsstand-november-12-2026</td>
+</tr>
+<tr>
+<td><span class="tag tag-ai">**AI**</span></td>
+<td>Tether AI BotPsy 0.8B 开源</td>
+<td>本地工具调用小模型</td>
+<td>https://cnaihot.com</td>
+</tr>
+<tr>
+<td><span class="tag tag-bigdata">**大数据**</span></td>
+<td>leijuan：PGX / Polars 2.1 / Kafka 4.4 / DuckDB 2.0</td>
+<td>AI Agent 临时库、DataFrame 引擎、事件流、嵌入式分析持续迭代</td>
+<td>https://leijuan.davao.page/</td>
+</tr>
+<tr>
+<td><span class="tag tag-bigdata">**大数据**</span></td>
+<td>Apple "Faster Retrieval for Better RAG"</td>
+<td>更高效的检索提升 RAG 效果与效率</td>
+<td>https://machinelearning.apple.com/research/faster-retrieval</td>
+</tr>
+<tr>
+<td><span class="tag tag-cloud">**云计算**</span></td>
+<td>AWS Emulator（200+ 云服务本地模拟）</td>
+<td>AI 智能体端到端交付、团队未审查代码</td>
+<td>https://github.com/aws/aws-emulator</td>
+</tr>
+<tr>
+<td><span class="tag tag-cloud">**云计算**</span></td>
+<td>微软 1170 亿美元自建供电数据中心（Project Kilby）</td>
+<td>自担电力成本，得州独立配套供电，2028 初步运营</td>
+<td>https://www.163.com/dy/article/LBH0JSNI0519QIKK.html</td>
+</tr>
+<tr>
+<td><span class="tag tag-cloud">**云计算**</span></td>
+<td>Anthropic 云租赁承诺增约 100 亿美元</td>
+<td>与微软/谷歌新采购，Lambda 349 亿协议存取消风险</td>
+<td>https://news.qq.com/rain/a/20261112A0344C00</td>
+</tr>
+<tr>
+<td><span class="tag tag-cloud">**云计算**</span></td>
+<td>Jane Street NYC 数据中心误喷水事件</td>
+<td>误报火警几乎淹没其唯一纽约数据中心</td>
+<td>https://michael.bacarella.com/2026/11/10/false-smoke-alarm-jane-street-datacenter/</td>
+</tr>
+<tr>
+<td><span class="tag tag-java">**Java**</span></td>
+<td>JeecgBoot / agentscope-java / Spring</td>
+<td>AI 低代码、分布式智能体、Spring 框架持续活跃</td>
+<td>https://github.com/jeecgboot/JeecgBoot</td>
+</tr>
+<tr>
+<td><span class="tag tag-rust">**Rust**</span></td>
+<td>agent-browser / RuView / topcoat / sniffnet / dbdelve</td>
+<td>浏览器自动化、WiFi 空间智能、Web 框架、网络监控、DB 客户端</td>
+<td>https://github.com/vercel-labs/agent-browser</td>
+</tr>
+<tr>
+<td><span class="tag tag-linux">**Linux</span><span class="tag tag-other">网络</span><span class="tag tag-other">系统**</span></td>
+<td>GoodbyeDPI / bubblewrap / PowerToys / BlackHole</td>
+<td>DPI 规避、Flatpak 沙箱、Windows 工具集、macOS 音频驱动</td>
+<td>https://github.com/ValdikSS/GoodbyeDPI</td>
+</tr>
+<tr>
+<td><span class="tag tag-other">**其他**</span></td>
+<td>Tim Peters 逝世 / Nvidia 罢免传闻 / United 禁 AI 代订机票</td>
+<td>Python 社区损失、芯片业震动、AI 代理合规边界</td>
+<td>https://discuss.python.org/t/in-memoriam-tim-peters-1952-2026/110028</td>
+</tr>
+</tbody></table>
+<hr>
+<footer>生成时间：2026-11-12 09:30 (GMT+8)。日报由自动化任务定时生成，覆盖 GitHub / Hacker News / leijuan / WebSearch 多源。</footer>
+</section>
+</div>
+</body>
+</html>
