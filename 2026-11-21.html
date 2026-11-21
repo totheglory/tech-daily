@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>技术研发日报 2026-11-21</title>
+<style>
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --ink:#1f2328; --muted:#5b6573;
+  --line:#e3e7ec; --accent:#2f6feb; --accent-soft:#eaf1ff;
+  --shadow:0 1px 3px rgba(16,24,40,.06),0 6px 20px rgba(16,24,40,.05);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:14px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;}
+.wrap{max-width:1120px;margin:0 auto;padding:28px 20px 56px}
+h1{font-size:26px;margin:0 0 6px;letter-spacing:.3px}
+h2{font-size:19px;margin:0;padding:0 0 12px;border-bottom:1px solid var(--line)}
+h3{font-size:15px;margin:24px 0 10px;color:#30363d}
+.wrap>header{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:24px 26px;margin-bottom:18px;box-shadow:var(--shadow)}
+.subtitle{color:var(--muted);font-size:12.5px;margin:0}
+.note{color:var(--muted);font-size:12px;margin:12px 0 0;line-height:1.7}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:22px 26px;margin-bottom:18px;box-shadow:var(--shadow)}
+.hl{background:linear-gradient(180deg,#f0f6ff,#ffffff);border:1px solid #cfe0ff}
+.hl h2{border-bottom-color:#cfe0ff}
+ol.takeaways{margin:16px 0 0;padding-left:22px}
+ol.takeaways li{margin:9px 0}
+ol.takeaways li::marker{color:var(--accent);font-weight:700}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:#f7f9fb;color:#3b444f;font-weight:600;white-space:nowrap;font-size:12.5px}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:#fafbfd}
+td a{color:var(--accent);text-decoration:none;white-space:nowrap}
+td a:hover{text-decoration:underline}
+code{background:#f0f2f5;border-radius:4px;padding:1px 5px;font-size:12px;color:#b3306a}
+.tag{display:inline-block;font-size:11px;font-weight:600;line-height:1.5;
+  padding:1px 8px;border-radius:20px;white-space:nowrap;margin:1px 3px 1px 0}
+.tag-ai{background:#efe9ff;color:#6d3fd4}
+.tag-bigdata{background:#e6f0ff;color:#1d5fcb}
+.tag-cloud{background:#e2f5f4;color:#0e7c74}
+.tag-java{background:#ffede1;color:#c2571a}
+.tag-rust{background:#fbe9e7;color:#b23a2b}
+.tag-linux{background:#fff3d6;color:#9a6700}
+.tag-other{background:#eef1f4;color:#57606a}
+.stars{color:#b23a2b;font-weight:600}
+.sources{color:var(--muted);font-size:12px;text-align:center;margin-top:18px}
+.sources p{margin:0}
+footer{text-align:center;color:var(--muted);font-size:12px;margin-top:26px}
+hr{border:0;border-top:1px dashed var(--line);margin:4px 0}
+@media(max-width:760px){
+  .wrap{padding:16px 12px 40px}
+  .card,header{padding:16px}
+  table{display:block;overflow-x:auto;white-space:nowrap}
+  h1{font-size:22px}
+}
+@media print{
+  body{background:#fff}.card,header{box-shadow:none;break-inside:avoid}
+  td a{color:#1f2328}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><h1>技术研发日报 2026-11-21</h1>
+</header>
+<p class="note">数据源：GitHub Trending（daily + Rust/Java/Go/Python/C/TypeScript 分语言页）、Hacker News front_page API、leijuan（linux_china）、Brendan Gregg 站、InfoQ 中文/英文、微博技术检索、WebSearch 补充。x.com 需登录无法自动抓取，已用上述源等价覆盖社区热点；微博页面直连受限，技术条目通过站内检索获取。</p>
+<section class="card hl"><h2>今日最值得看</h2>
+<ol class="takeaways">
+<li><strong>数学界核弹级热帖霸榜 Hacker News</strong>：Levent Alpöge 宣称证明广义黎曼猜想（2318 分 / 1566 评论，今日榜首），随后 Alessandro Masullo 的"抢发"帖 1459 分、Terry Tao 与 Scott Aaronson 跟进分析同榜——"随机鹦鹉证明黎曼猜想"成为 AI 辅助证明的新讨论焦点。</li>
+<li><strong>AI 开始设计芯片</strong>：Frostbite——由 AI 发现、设计并验证的全新 CPU 架构登陆 HN（616 分）；同期 arXiv 论文《Language Models Can Rewrite Their Own Weights》（326 分）、Show HN 推理芯片 vibecoding（106 分），AI for chip design 成色渐足。</li>
+<li><strong>国产模型 + 自研芯片闭环加速</strong>：腾讯开源 7700 亿参数旗舰 Hy4（多模态 + 操作电脑）；阿里真武 V900 AI 芯片明年一季度量产（算力 3 倍、216GB、50 万卡集群），AI 云收入同比 +53%；Kimi K3.1 Pro 放出全球最大开源权重，国产模型 OpenRouter 连续 29 周居首。</li>
+<li><strong>云厂商集体转向「Agentic Infra」</strong>：华为云创想者大会发灵渠智算集群 / AMS 记忆存储 / VolcanoNext 调度 / AgentSphere 四件套；百度"芯云模体"发布天池 1024 卡超节点 + 词元所交易平台；亚马逊云科技拆解智能体规模化——Token 工厂成为新底座。</li>
+<li><strong>GitHub Agent/Skills 工具链继续霸榜</strong>：Claude-BugHunter +1622★ 居首、firecrawl +1241★、autoclip +979★、superpowers +890★；Go 榜腾讯 LoopForge +1216★ 登顶。</li>
+</ol>
+<hr>
+</section>
+<section class="card "><h2>一、GitHub 热门</h2>
+<h3>1.1 综合日榜 Top 15（daily，按今日新增★降序）</h3>
+<table><thead><tr>
+<th>项目</th>
+<th>方向</th>
+<th>一句话说明</th>
+<th>今日★</th>
+<th>链接</th>
+</tr></thead><tbody>
+<tr>
+<td>elementalsouls/Claude-BugHunter</td>
+<td><span class="tag tag-ai">AI</span></td>
+<td>Claude Code 漏洞挖掘/红队技能包，82 技能、681 份披露报告模式（Python）</td>
+<td><span class="stars">+1622</span></td>
+<td><a href="https://github.com/elementalsouls/Claude-BugHunter">链接</a></td>
+</tr>
+<tr>
+<td>firecrawl/firecrawl</td>
+<td><span class="tag tag-ai">AI</span></td>
+<td>Agent 知识基础设施：搜索/抓取/550+ 数据源统一 API（TypeScript）</td>
+<td><span class="stars">+1241</span></td>
+<td><a href="https://github.com/firecrawl/firecrawl">链接</a></td>
+</tr>
+<tr>
+<td>XiaoYouChR/Ghost-Downloader-3</td>
+<td><span class="tag tag-other">其他</span></td>
+<td>下载器集大成者，多站点网络资源下载（Python）</td>
+<td><span class="stars">+1082</span></td>
+<td><a href="https://github.com/XiaoYouChR/Ghost-Downloader-3">链接</a></td>
+</tr>
+<tr>
+<td>zhouxiaoka/autoclip</td>
+<td><span class="tag tag-ai">AI</span></td>
+<td>开源 AI 视频剪辑，长视频自动切短并生成字幕/封面/文案（Python）</td>
+<td><span class="stars">+979</span></td>
+<td><a href="https://github.com/zhouxiaoka/autoclip">链接</a></td>
+</tr>
+<tr>
+<td>obra/superpowers</td>
+<td><span class="tag tag-ai">AI</span></td>
+<td>Agent Skills 框架 + 软件开发方法论（Shell）</td>
+<td><span class="stars">+890</span></td>
+<td><a href="https://github.com/obra/superpowers">链接</a></td>
+</tr>
+<tr>
+<td>mjmirza/app-store-compliance</td>
+<td><span class="tag tag-other">其他</span></td>
+<td>App Store/Google Play 拒审规避手册 + 提交前检查（117 种拒审模式）</td>
+<td><span class="stars">+869</span></td>
+<td><a href="https://github.com/mjmirza/app-store-compliance">链接</a></td>
+</tr>
+<tr>
+<td>jingyaogong/minimind</td>
+<td><span class="tag tag-ai">AI</span></td>
+<td>两小时从零训练 64M 大模型（Python）</td>
+<td><span class="stars">+847</span></td>
+<td><a href="https://github.com/jingyaogong/minimind">链接</a></td>
+</tr>
+<tr>
+<td>HKUDS/CLI-Anything</td>
+<td><span class="tag tag-ai">AI</span></td>
+<td>把任意软件改造成 Agent-Native 的 CLI 工具集（Python）</td>
+<td><span class="stars">+773</span></td>
+<td><a href="https://github.com/HKUDS/CLI-Anything">链接</a></td>
+</tr>
+<tr>
+<td>mvanhorn/last30days-skill</td>
+<td><span class="tag tag-ai">AI</span></td>
+<td>跨 Reddit/X/YouTube/HN/Polymarket 检索并综合作答的 skill</td>
+<td><span class="stars">+681</span></td>
+<td><a href="https://github.com/mvanhorn/last30days-skill">链接</a></td>
+</tr>
+<tr>
+<td>toeverything/AFFiNE</td>
+<td><span class="tag tag-other">其他</span></td>
+<td>开源下一代知识库，融合规划/整理/创作（TypeScript）</td>
+<td><span class="stars">+676</span></td>
+<td><a href="https://github.com/toeverything/AFFiNE">链接</a></td>
+</tr>
+<tr>
+<td>cathrynlavery/diagram-design</td>
+<td><span class="tag tag-ai">AI</span></td>
+<td>面向编码 Agent 的编辑级图表设计，45 种类型、自包含 HTML+SVG</td>
+<td><span class="stars">+636</span></td>
+<td><a href="https://github.com/cathrynlavery/diagram-design">链接</a></td>
+</tr>
+<tr>
+<td>Tracer-Cloud/opensre</td>
+<td><span class="tag tag-other">其他</span></td>
+<td>CI/CD 可靠性开源 Agent（Python）</td>
+<td><span class="stars">+466</span></td>
+<td><a href="https://github.com/Tracer-Cloud/opensre">链接</a></td>
+</tr>
+<tr>
+<td>google-labs-code/stitch-skills</td>
+<td><span class="tag tag-ai">AI</span></td>
+<td>配套 Stitch MCP 的 Agent Skills 库，兼容主流编码 Agent（TypeScript）</td>
+<td><span class="stars">+315</span></td>
+<td><a href="https://github.com/google-labs-code/stitch-skills">链接</a></td>
+</tr>
+<tr>
+<td>cursor/plugins</td>
+<td><span class="tag tag-ai">AI</span></td>
+<td>Cursor 插件规范与官方插件集（TypeScript）</td>
+<td><span class="stars">+299</span></td>
+<td><a href="https://github.com/cursor/plugins">链接</a></td>
+</tr>
+<tr>
+<td>nginx/nginx</td>
+<td><span class="tag tag-other">其他</span></td>
+<td>NGINX 官方开源仓库（C）</td>
+<td><span class="stars">+246</span></td>
+<td><a href="https://github.com/nginx/nginx">链接</a></td>
+</tr>
+</tbody></table>
+<h3>1.2 分语言榜补充（各取当日新增★ Top 5，已对综合日榜去重）</h3>
+<table><thead><tr>
+<th>项目</th>
+<th>方向</th>
+<th>一句话说明</th>
+<th>今日★</th>
+<th>链接</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>Rust</strong> · rustdesk/rustdesk</td>
+<td><span class="tag tag-rust">Rust</span></td>
+<td>开源远程桌面，可自托管替代 TeamViewer</td>
+<td><span class="stars">+250</span></td>
+<td><a href="https://github.com/rustdesk/rustdesk">链接</a></td>
+</tr>
+<tr>
+<td><strong>Rust</strong> · t8y2/dbx</td>
+<td><span class="tag tag-rust">Rust</span><span class="tag tag-bigdata">大数据</span></td>
+<td>25MB 轻量跨平台数据库客户端，支持 100+ 数据库，内置 AI 与 MCP Server</td>
+<td><span class="stars">+159</span></td>
+<td><a href="https://github.com/t8y2/dbx">链接</a></td>
+</tr>
+<tr>
+<td><strong>Rust</strong> · rtk-ai/rtk</td>
+<td><span class="tag tag-rust">Rust</span><span class="tag tag-other">性能</span></td>
+<td>CLI 代理，常规开发命令 LLM token 消耗降 60–90%，单二进制零依赖</td>
+<td><span class="stars">+104</span></td>
+<td><a href="https://github.com/rtk-ai/rtk">链接</a></td>
+</tr>
+<tr>
+<td><strong>Rust</strong> · janHQ/jan</td>
+<td><span class="tag tag-rust">Rust</span><span class="tag tag-ai">AI</span></td>
+<td>开源 ChatGPT 本地替代，100% 离线运行</td>
+<td><span class="stars">+101</span></td>
+<td><a href="https://github.com/janhq/jan">链接</a></td>
+</tr>
+<tr>
+<td><strong>Rust</strong> · lbjlaq/Antigravity-Manager</td>
+<td><span class="tag tag-rust">Rust</span><span class="tag tag-ai">AI</span></td>
+<td>Antigravity 账号管理与一键切换（Tauri v2 + React）</td>
+<td><span class="stars">+87</span></td>
+<td><a href="https://github.com/lbjlaq/Antigravity-Manager">链接</a></td>
+</tr>
+<tr>
+<td><strong>Java</strong> · keycloak/keycloak</td>
+<td><span class="tag tag-java">Java</span></td>
+<td>面向现代应用的开源身份与访问管理</td>
+<td><span class="stars">+18</span></td>
+<td><a href="https://github.com/keycloak/keycloak">链接</a></td>
+</tr>
+<tr>
+<td><strong>Java</strong> · dbeaver/dbeaver</td>
+<td><span class="tag tag-java">Java</span><span class="tag tag-bigdata">大数据</span></td>
+<td>免费通用数据库工具与 SQL 客户端</td>
+<td><span class="stars">+15</span></td>
+<td><a href="https://github.com/dbeaver/dbeaver">链接</a></td>
+</tr>
+<tr>
+<td><strong>Java</strong> · openjdk/jdk</td>
+<td><span class="tag tag-java">Java</span></td>
+<td>OpenJDK 主线开发仓库</td>
+<td><span class="stars">+10</span></td>
+<td><a href="https://github.com/openjdk/jdk">链接</a></td>
+</tr>
+<tr>
+<td><strong>Java</strong> · opensearch-project/OpenSearch</td>
+<td><span class="tag tag-java">Java</span><span class="tag tag-bigdata">大数据</span></td>
+<td>开源分布式 RESTful 搜索引擎</td>
+<td><span class="stars">+5</span></td>
+<td><a href="https://github.com/opensearch-project/OpenSearch">链接</a></td>
+</tr>
+<tr>
+<td><strong>Java</strong> · microsoft/copilot-sdk</td>
+<td><span class="tag tag-java">Java</span><span class="tag tag-ai">AI</span></td>
+<td>把 GitHub Copilot Agent 集成进应用的多平台 SDK</td>
+<td><span class="stars">+3</span></td>
+<td><a href="https://github.com/microsoft/copilot-sdk">链接</a></td>
+</tr>
+<tr>
+<td><strong>Go</strong> · Tencent/LoopForge</td>
+<td><span class="tag tag-ai">AI</span></td>
+<td>自托管 coding-agent 交付工作流，编排 CodeBuddy/Codex/Claude Code</td>
+<td><span class="stars">+1216</span></td>
+<td><a href="https://github.com/Tencent/LoopForge">链接</a></td>
+</tr>
+<tr>
+<td><strong>Go</strong> · agent-substrate/substrate</td>
+<td><span class="tag tag-ai">AI</span></td>
+<td>Agent Substrate 核心系统</td>
+<td><span class="stars">+224</span></td>
+<td><a href="https://github.com/agent-substrate/substrate">链接</a></td>
+</tr>
+<tr>
+<td><strong>Go</strong> · multica-ai/multica</td>
+<td><span class="tag tag-ai">AI</span></td>
+<td>人与 AI 智能体协同的开源可自托管平台</td>
+<td><span class="stars">+173</span></td>
+<td><a href="https://github.com/multica-ai/multica">链接</a></td>
+</tr>
+<tr>
+<td><strong>Go</strong> · getarcaneapp/arcane</td>
+<td><span class="tag tag-cloud">云计算</span></td>
+<td>面向大众的现代化 Docker 管理面板</td>
+<td><span class="stars">+90</span></td>
+<td><a href="https://github.com/getarcaneapp/arcane">链接</a></td>
+</tr>
+<tr>
+<td><strong>Go</strong> · vxcontrol/pentagi</td>
+<td><span class="tag tag-ai">AI</span></td>
+<td>全自主 AI Agent 渗透测试系统</td>
+<td><span class="stars">+72</span></td>
+<td><a href="https://github.com/vxcontrol/pentagi">链接</a></td>
+</tr>
+<tr>
+<td><strong>C</strong> · LiberNT/LiberNT</td>
+<td><span class="tag tag-other">其他</span></td>
+<td>免费的 Windows 兼容操作系统</td>
+<td><span class="stars">+166</span></td>
+<td><a href="https://github.com/LiberNT/LiberNT">链接</a></td>
+</tr>
+<tr>
+<td><strong>C</strong> · semgrep/semgrep</td>
+<td><span class="tag tag-other">其他</span></td>
+<td>多语言轻量静态分析，按源码模式找 bug 变体</td>
+<td><span class="stars">+27</span></td>
+<td><a href="https://github.com/semgrep/semgrep">链接</a></td>
+</tr>
+<tr>
+<td><strong>C</strong> · pgvector/pgvector</td>
+<td><span class="tag tag-bigdata">大数据</span></td>
+<td>Postgres 开源向量相似度检索扩展</td>
+<td><span class="stars">+17</span></td>
+<td><a href="https://github.com/pgvector/pgvector">链接</a></td>
+</tr>
+<tr>
+<td><strong>C</strong> · meta/zstd</td>
+<td><span class="tag tag-other">性能</span><span class="tag tag-other">其他</span></td>
+<td>Zstandard 实时压缩算法</td>
+<td><span class="stars">+15</span></td>
+<td><a href="https://github.com/facebook/zstd">链接</a></td>
+</tr>
+<tr>
+<td><strong>C</strong> · php/php-src</td>
+<td><span class="tag tag-other">其他</span></td>
+<td>PHP 解释器</td>
+<td><span class="stars">+14</span></td>
+<td><a href="https://github.com/php/php-src">链接</a></td>
+</tr>
+<tr>
+<td><strong>TypeScript</strong> · bendlang/bend</td>
+<td><span class="tag tag-ai">AI</span><span class="tag tag-other">其他</span></td>
+<td>Bend 2：用类型证明阻断 AI 生成错误的高性能语言</td>
+<td><span class="stars">+95</span></td>
+<td><a href="https://github.com/bendlang/bend">链接</a></td>
+</tr>
+</tbody></table>
+<p class="note">Python 榜前列（Claude-BugHunter、CLI-Anything、minimind、last30days-skill、opensre）与 TypeScript 榜前列（firecrawl、stitch-skills、AFFiNE、cursor/plugins）均已在综合日榜出现，此处只保留未重复项；Rust 榜另有关注项 malisper/pgrust（用 Rust 重写 Postgres，称快过 Postgres 与 ClickHouse，+28★）。</p>
+<hr>
+</section>
+<section class="card "><h2>二、Hacker News 头条（front_page，按分数取前 15）</h2>
+<table><thead><tr>
+<th>标题</th>
+<th>方向</th>
+<th>一句话说明</th>
+<th>分数/评论</th>
+<th>链接</th>
+</tr></thead><tbody>
+<tr>
+<td>Levent Alpöge claims proof of the Generalized Riemann Hypothesis [pdf]</td>
+<td><span class="tag tag-other">其他</span></td>
+<td>广义黎曼猜想被宣称证明，数学界震动（今日榜首）</td>
+<td><span class="stars">2318 / 1566</span></td>
+<td><a href="https://alpo.ge/remark.pdf">原文</a></td>
+</tr>
+<tr>
+<td>Hurried Announcement: Alessandro Masullo GRH</td>
+<td><span class="tag tag-other">其他</span></td>
+<td>紧随其后的另一篇 GRH"抢发"声明</td>
+<td><span class="stars">1459 / 674</span></td>
+<td><a href="https://math216.wordpress.com/2026/11/20/hurried-announcement-alessandro-masullo-grh/">原文</a></td>
+</tr>
+<tr>
+<td>Frostbite: A new CPU architecture discovered, designed and verified by AI</td>
+<td><span class="tag tag-ai">AI</span><span class="tag tag-other">性能</span></td>
+<td>由 AI 发现、设计并验证的全新 CPU 架构</td>
+<td><span class="stars">616 / 322</span></td>
+<td><a href="https://architectlabs.com/blog/frostbite">原文</a></td>
+</tr>
+<tr>
+<td>If you can't explain something in simple terms, you don't understand it (2017)</td>
+<td><span class="tag tag-other">其他</span></td>
+<td>关于"简单表述即真懂"的经典短文重上热榜</td>
+<td><span class="stars">615 / 289</span></td>
+<td><a href="https://kottke.org/17/06/if-you-cant-explain-something-in-simple-terms-you-dont-understand-it">原文</a></td>
+</tr>
+<tr>
+<td>Inkling 2 Mini</td>
+<td><span class="tag tag-ai">AI</span></td>
+<td>Thinking Machines 发布 26B 参数循环 Transformer，面向本地 AI 编程</td>
+<td><span class="stars">610 / 98</span></td>
+<td><a href="https://thinkingmachines.ai/news/inkling-2-mini/">原文</a></td>
+</tr>
+<tr>
+<td>Signal Is Serious About Protecting Your Privacy</td>
+<td><span class="tag tag-other">其他</span></td>
+<td>Signal 阐述其隐私保护机制</td>
+<td><span class="stars">497 / 297</span></td>
+<td><a href="https://signal.org/blog/protecting-your-privacy/">原文</a></td>
+</tr>
+<tr>
+<td>Language Models Can Rewrite Their Own Weights</td>
+<td><span class="tag tag-ai">AI</span></td>
+<td>arXiv 论文：语言模型可改写自身权重</td>
+<td><span class="stars">326 / 106</span></td>
+<td><a href="https://arxiv.org/abs/2611.21885">原文</a></td>
+</tr>
+<tr>
+<td>Unforced Navier-Stokes Singularity and the Generalized Riemann Hypothesis</td>
+<td><span class="tag tag-other">其他</span></td>
+<td>Terry Tao 谈 Navier-Stokes 奇点与 GRH 的关联</td>
+<td><span class="stars">324 / 128</span></td>
+<td><a href="https://terrytao.wordpress.com/2026/11/20/unforced-euler-singularity-unforced-navier-stokes-singularity-and-the-generalized-riemann-hypothesis/">原文</a></td>
+</tr>
+<tr>
+<td>We promoted developers into architects without informing them</td>
+<td><span class="tag tag-other">其他</span></td>
+<td>关于"程序员被提拔为架构师"的反思</td>
+<td><span class="stars">274 / 171</span></td>
+<td><a href="https://manidoraisamy.com/developer-to-architect.html">原文</a></td>
+</tr>
+<tr>
+<td>Finite-time blow-up for the Navier–Stokes equations</td>
+<td><span class="tag tag-other">其他</span></td>
+<td>Navier–Stokes 方程有限时间爆破的证明仓库</td>
+<td><span class="stars">256 / 80</span></td>
+<td><a href="https://github.com/tristanbuckmaster/navier-stokes/">原文</a></td>
+</tr>
+<tr>
+<td>Google Workers Tell Their Employer Not to Punish Schools That Don't Want AI</td>
+<td><span class="tag tag-ai">AI</span><span class="tag tag-other">其他</span></td>
+<td>谷歌员工请愿，反对惩罚拒绝 AI 的学校</td>
+<td><span class="stars">253 / 191</span></td>
+<td><a href="https://www.motherjones.com/politics/2026/11/google-alphabet-union-school-ai-protest-gemini-workers-petition/">原文</a></td>
+</tr>
+<tr>
+<td>Show HN: I made an audio-to-MIDI model 60x more efficient</td>
+<td><span class="tag tag-ai">AI</span></td>
+<td>音频转 MIDI 模型效率提升 60 倍</td>
+<td><span class="stars">229 / 48</span></td>
+<td><a href="https://kobi.music/research/dettato">原文</a></td>
+</tr>
+<tr>
+<td>Nvidia accounting under SEC investigation, sources say</td>
+<td><span class="tag tag-other">其他</span></td>
+<td>英伟达会计问题被 SEC 调查</td>
+<td><span class="stars">210 / 102</span></td>
+<td><a href="https://finance.yahoo.com/markets/article/nvidia-stock-extends-25-trillion-rout-as-sec-probe-reportedly-investigates-its-accounting-194945274.html">原文</a></td>
+</tr>
+<tr>
+<td>The stochastic parrots have apparently proved the Riemann Hypothesis</td>
+<td><span class="tag tag-ai">AI</span><span class="tag tag-other">其他</span></td>
+<td>Scott Aaronson 评论"随机鹦鹉证明黎曼猜想"</td>
+<td><span class="stars">200 / 165</span></td>
+<td><a href="https://scottaaronson.blog/?p=10344">原文</a></td>
+</tr>
+<tr>
+<td>Vibecoding an inference chip</td>
+<td><span class="tag tag-ai">AI</span><span class="tag tag-other">性能</span></td>
+<td>用 vibe coding 设计推理芯片的实践</td>
+<td><span class="stars">106 / 38</span></td>
+<td><a href="https://ankitg.me/blog/vibecoding-inference-chip/">原文</a></td>
+</tr>
+</tbody></table>
+<p class="note">其余上榜：Nasdaq erases all 2026 gains（101 分）、Winedroid 在 WASM 上跑 Android 应用（92 分）、DreamCoder 编程 IDE（88 分）、NINLIVE 九寸钉现场存档（81 分）。今日 HN 前 8 条有 4 条与广义黎曼猜想相关，为罕见的数学日。</p>
+<hr>
+</section>
+<section class="card "><h2>三、leijuan 技术博客（linux_china，最新 8 条）</h2>
+<table><thead><tr>
+<th>标题</th>
+<th>方向</th>
+<th>一句话说明</th>
+<th>日期</th>
+<th>链接</th>
+</tr></thead><tbody>
+<tr>
+<td>Kiri: 轻量容器 Runtime</td>
+<td><span class="tag tag-linux">Linux</span><span class="tag tag-cloud">云计算</span></td>
+<td>极致性能、低内存、兼容 Docker、安全、AI 友好</td>
+<td>11-17</td>
+<td><a href="https://leijuan.davao.page/blog/2026-11-17-kiri">链接</a></td>
+</tr>
+<tr>
+<td>Tech Weekly 2026-11-15</td>
+<td><span class="tag tag-ai">AI</span><span class="tag tag-rust">Rust</span></td>
+<td>本周聚合：llama.cpp 1.0、Rust 1.100.0</td>
+<td>11-15</td>
+<td><a href="https://leijuan.davao.page/blog/2026-11-15-tech-weekly">链接</a></td>
+</tr>
+<tr>
+<td>zawk 0.7 更新：AI 友好、性能提升、标准库函数扩大</td>
+<td><span class="tag tag-other">其他</span></td>
+<td>zawk 编译原理与实现之 Cranelift 篇</td>
+<td>11-11</td>
+<td><a href="https://leijuan.davao.page/blog/2026-11-11-zawk">链接</a></td>
+</tr>
+<tr>
+<td>Tech Weekly 2026-11-08</td>
+<td><span class="tag tag-ai">AI</span><span class="tag tag-other">其他</span></td>
+<td>FastAPI Cloud、Libghostty 1.0、DeepSeek Super-agent、Technology Radar Vol 35</td>
+<td>11-08</td>
+<td><a href="https://leijuan.davao.page/blog/2026-11-08-tech-weekly">链接</a></td>
+</tr>
+<tr>
+<td>FastAPI Cloud 对外开发</td>
+<td><span class="tag tag-cloud">云计算</span></td>
+<td>快速部署 FastAPI 应用</td>
+<td>11-03</td>
+<td><a href="https://leijuan.davao.page/blog/2026-11-03-fastapi-cloud">链接</a></td>
+</tr>
+<tr>
+<td>Tech Weekly 2026-11-01</td>
+<td><span class="tag tag-ai">AI</span><span class="tag tag-bigdata">大数据</span></td>
+<td>GPT-6.1 Terra、Ghostty 1.4、Polars 2.1、Kafka 4.4</td>
+<td>11-01</td>
+<td><a href="https://leijuan.davao.page/blog/2026-11-01-tech-weekly">链接</a></td>
+</tr>
+<tr>
+<td>Confluent Kafka Rust Client 1.0</td>
+<td><span class="tag tag-rust">Rust</span><span class="tag tag-bigdata">大数据</span></td>
+<td>轻量级 Rust Kafka 客户端，API 友好</td>
+<td>10-31</td>
+<td><a href="https://leijuan.davao.page/blog/2026-10-31-kafka-rust-client">链接</a></td>
+</tr>
+<tr>
+<td>PGX：为 AI Agent 快速创建独立 PostgreSQL 数据库</td>
+<td><span class="tag tag-ai">AI</span><span class="tag tag-bigdata">大数据</span></td>
+<td>单运行时承载上千临时库，随用随建</td>
+<td>10-29</td>
+<td><a href="https://leijuan.davao.page/blog/2026-10-29-pgx">链接</a></td>
+</tr>
+</tbody></table>
+<hr>
+</section>
+<section class="card "><h2>四、Brendan Gregg（性能工程 / eBPF / 火焰图）</h2>
+<p>Brendan Gregg 站近期无更新，最近一篇：Why I joined OpenAI（2026-02-07）· <a href="https://www.brendangregg.com/blog/2026-02-07/why-i-joined-openai.html">链接</a>。该站为静态归档、无 RSS、更新很慢，故不做新动态收录。</p>
+<hr>
+</section>
+<section class="card "><h2>五、InfoQ（中文 + 英文，两源去重后按方向取重点）</h2>
+<h3>5.1 InfoQ 中文（来自 infoq.cn，含编辑精选与新闻流）</h3>
+<table><thead><tr>
+<th>标题</th>
+<th>方向</th>
+<th>一句话说明</th>
+<th>时间</th>
+<th>链接</th>
+</tr></thead><tbody>
+<tr>
+<td>"美国大豆包"又发新模型，Neon 接入 Antigravity 后编程解题率升至三倍多</td>
+<td><span class="tag tag-ai">AI</span></td>
+<td>谷歌 Gemini 4 Neon 接入 Antigravity 后编程能力提升</td>
+<td>14 小时前</td>
+<td><a href="https://www.infoq.cn/article/tDxNggErsJNeb53ZkYeF">链接</a></td>
+</tr>
+<tr>
+<td>华为云开源昇腾原生具身世界模型 CloudRobo-WM1.2，两项评测均列第一</td>
+<td><span class="tag tag-ai">AI</span><span class="tag tag-cloud">云计算</span></td>
+<td>世界建模、动作生成与工程部署持续演进</td>
+<td>14 小时前</td>
+<td><a href="https://www.infoq.cn/news/LCqRiGDSeMBfXo4iktdA">链接</a></td>
+</tr>
+<tr>
+<td>OpenBSD 8.0 带来了更广泛的硬件支持、安全性增强以及虚拟化改进</td>
+<td><span class="tag tag-linux">Linux</span></td>
+<td>更大虚拟地址空间与现代架构支持</td>
+<td>20 小时前</td>
+<td><a href="https://www.infoq.cn/article/ENG8g3E0RX3IiuvgD7BG">链接</a></td>
+</tr>
+<tr>
+<td>Cloudflare 推出面向后量子时代 Web 安全的公共证书颁发机构</td>
+<td><span class="tag tag-cloud">云计算</span><span class="tag tag-other">其他</span></td>
+<td>测试默克尔树证书替代传统证书链，中位性能 +9%</td>
+<td>21 小时前</td>
+<td><a href="https://www.infoq.cn/article/WGpi7vxi1pCiJeJBKbm7">链接</a></td>
+</tr>
+<tr>
+<td>谷歌发布用于机器人控制、仿真和策略优化的 Gemini 4 Argon</td>
+<td><span class="tag tag-ai">AI</span></td>
+<td>定位通用物理推理模型，适用 Real2Sim 与迭代策略优化</td>
+<td>22 小时前</td>
+<td><a href="https://www.infoq.cn/article/S4LH5Z9zcbLokm5uNSKR">链接</a></td>
+</tr>
+<tr>
+<td>Snowflake Expedition 大会重磅更新</td>
+<td><span class="tag tag-bigdata">大数据</span><span class="tag tag-cloud">云计算</span></td>
+<td>围绕"AI 价值取决于企业业务上下文"展开</td>
+<td>23 小时前</td>
+<td><a href="https://www.infoq.cn/article/KBcjdx4ZlUj4hyI7zvdd">链接</a></td>
+</tr>
+<tr>
+<td>Cloudflare 重构 D1 控制平面，支持数百万数据库规模</td>
+<td><span class="tag tag-bigdata">大数据</span><span class="tag tag-cloud">云计算</span></td>
+<td>引入重试、幂等与最终一致性，破除集中式瓶颈</td>
+<td>23 小时前</td>
+<td><a href="https://www.infoq.cn/article/tfy0PQW5LMZCXlCugMo6">链接</a></td>
+</tr>
+<tr>
+<td>微软将停用 Azure 部署环境，而且不会推出替代产品</td>
+<td><span class="tag tag-cloud">云计算</span></td>
+<td>Azure 部署环境 2027-02-22 停用，Dev Box 2028 年由 Windows 365 取代</td>
+<td>11-19</td>
+<td><a href="https://www.infoq.cn/article/UEZ4CPEr1vyESW6z647r">链接</a></td>
+</tr>
+<tr>
+<td>开源项目 pg_vectorsearch 为 PostgreSQL 带来更具可扩展性的向量搜索</td>
+<td><span class="tag tag-bigdata">大数据</span></td>
+<td>Tiger Data 发布 PostgreSQL 向量检索扩展（Alpha）</td>
+<td>11-19</td>
+<td><a href="https://www.infoq.cn/article/sbD3maMohpCIExV3UUH0">链接</a></td>
+</tr>
+<tr>
+<td>马斯克喊话"真男人自己管理内存"，系统老将警告：Rust 也拦不住 AI 制造复杂性</td>
+<td><span class="tag tag-rust">Rust</span><span class="tag tag-ai">AI</span></td>
+<td>编辑精选：AI 时代系统复杂性与内存安全的讨论</td>
+<td>近期</td>
+<td><a href="https://www.infoq.cn/article/FWqT2oGIEl9zlyJ7HXZF">链接</a></td>
+</tr>
+<tr>
+<td>DeepSeek 官方 App 全套能力开放 API，联网搜索价格不到 OpenAI/Claude 的 8%</td>
+<td><span class="tag tag-ai">AI</span></td>
+<td>编辑精选：DeepSeek 开放 API 并主打低价</td>
+<td>近期</td>
+<td><a href="https://www.infoq.cn/article/NWmk4epBL0jPAUtpKSKb">链接</a></td>
+</tr>
+<tr>
+<td>从 SDLC 到 ADLC：宝洁的 AI 原生组织实验</td>
+<td><span class="tag tag-ai">AI</span></td>
+<td>编辑精选：AI 原生组织与研发流程变革</td>
+<td>近期</td>
+<td><a href="https://www.infoq.cn/article/prRYMYmhOvSY9EaMz8Oc">链接</a></td>
+</tr>
+</tbody></table>
+<p class="note">InfoQ 中文编辑精选区未逐条给出精确时间，「近期」为首页当前排序位置推断；其余时间来自首页新闻流与 AI 快讯。Thinking Machines Inkling 2 Mini、Google Cloud 延迟服务层级 GA（后台 Agent 成本降 50%）、AWS AutoCorrode（连接智能体与 Isabelle 证明助手）等快讯已并入其他段落。</p>
+<h3>5.2 InfoQ 英文 feed（最新 8 条）</h3>
+<table><thead><tr>
+<th>标题</th>
+<th>方向</th>
+<th>一句话说明</th>
+<th>日期</th>
+<th>链接</th>
+</tr></thead><tbody>
+<tr>
+<td>AI-Assisted Software Delivery: From Code to Production</td>
+<td><span class="tag tag-ai">AI</span></td>
+<td>AI 辅助软件交付：从代码到生产</td>
+<td>11-19</td>
+<td><a href="https://www.infoq.com/presentations/ai-assisted-software-delivery/">原文</a></td>
+</tr>
+<tr>
+<td>QCon SF 2026: Use AI to Multiply Your Team as a Staff Engineer</td>
+<td><span class="tag tag-ai">AI</span></td>
+<td>用 AI 放大团队产能的 Staff Engineer 实践</td>
+<td>11-19</td>
+<td><a href="https://www.infoq.com/news/2026/11/ai-staff-engineer/">原文</a></td>
+</tr>
+<tr>
+<td>.NET 11: ASP.NET Core Union Types, OpenAPI 3.2, Blazor AI Components</td>
+<td><span class="tag tag-other">其他</span></td>
+<td>.NET 11 新特性：联合类型、默认 OpenAPI 3.2、Blazor AI 组件</td>
+<td>11-19</td>
+<td><a href="https://www.infoq.com/news/2026/11/asp-net-11-release/">原文</a></td>
+</tr>
+<tr>
+<td>Producing Healthy Code with AI Costs Fewer Tokens</td>
+<td><span class="tag tag-ai">AI</span><span class="tag tag-other">性能</span></td>
+<td>用 AI 产出健康代码反而更省 token</td>
+<td>11-19</td>
+<td><a href="https://www.infoq.com/news/2026/11/healthy-code-AI-tokens/">原文</a></td>
+</tr>
+<tr>
+<td>Presentation: RIIIR: Rewrite It In Idiomatic Rust (with AI)</td>
+<td><span class="tag tag-rust">Rust</span><span class="tag tag-ai">AI</span></td>
+<td>借 AI 把代码重写为地道 Rust</td>
+<td>11-19</td>
+<td><a href="https://www.infoq.com/presentations/rust-ai-symposium-agent-client-protocol/">原文</a></td>
+</tr>
+<tr>
+<td>NetWasm 0.10 Speeds Up C# on WebAssembly, Now Faster Than Mono AOT</td>
+<td><span class="tag tag-other">其他</span><span class="tag tag-other">性能</span></td>
+<td>NetWasm 0.10 让 WASM 上的 C# 快过 Mono AOT</td>
+<td>11-19</td>
+<td><a href="https://www.infoq.com/news/2026/11/NetWasm-0-10-Faster/">原文</a></td>
+</tr>
+<tr>
+<td>Discord Rewrites Desktop and Mobile Clients in Rust Using Zed's GPU-Accelerated Rendering</td>
+<td><span class="tag tag-rust">Rust</span><span class="tag tag-other">性能</span></td>
+<td>Discord 用 Zed 的 GPU 加速渲染框架以 Rust 重写客户端</td>
+<td>11-19</td>
+<td><a href="https://www.infoq.com/news/2026/11/discord-rust-rewrite-gpui-zed/">原文</a></td>
+</tr>
+<tr>
+<td>LinkedIn Cuts Daily Spark Shuffle Fetch Failures from 750 to 20 with Apache Celeborn</td>
+<td><span class="tag tag-bigdata">大数据</span></td>
+<td>LinkedIn 用 Celeborn 将 Spark Shuffle 拉取失败从 750 降到 20</td>
+<td>11-18</td>
+<td><a href="https://www.infoq.com/news/2026/11/linkedin-celeborn-remote-shuffle/">原文</a></td>
+</tr>
+</tbody></table>
+<hr>
+</section>
+<section class="card "><h2>六、微博技术动态（AI / Java / 云计算，站内检索，已剔除泛财经与社会新闻）</h2>
+<table><thead><tr>
+<th>标题</th>
+<th>方向</th>
+<th>一句话说明</th>
+<th>链接</th>
+</tr></thead><tbody>
+<tr>
+<td>从局部提效到 AI 原生，亚马逊云科技拆解智能体规模化难题</td>
+<td><span class="tag tag-cloud">云计算</span><span class="tag tag-ai">AI</span></td>
+<td>Bedrock AgentCore 六组件已在北京/宁夏区域可用；提出企业 AI 落地 10/20/70 框架</td>
+<td><a href="https://weibo.com/ttarticle/p/show?id=2309405367402023223344">链接</a></td>
+</tr>
+<tr>
+<td>具身机器人进入真机时代，华为云 CloudRobo 开始组队发力</td>
+<td><span class="tag tag-ai">AI</span><span class="tag tag-cloud">云计算</span></td>
+<td>昇腾原生具身世界模型 CloudRobo-WM1.2；近两年 Token 消耗增约 1400 倍，Agent 任务是普通问答的 100–1000 倍</td>
+<td><a href="https://weibo.com/ttarticle/p/show?id=2309405367251825197122">链接</a></td>
+</tr>
+<tr>
+<td>算电协同，如何才能真协同？</td>
+<td><span class="tag tag-cloud">云计算</span><span class="tag tag-other">其他</span></td>
+<td>成都产业生态大会：算力竞争从"有多少卡"转向"能产出多少有效 Token"</td>
+<td><a href="https://weibo.com/ttarticle/p/show?id=2309405367338013949991">链接</a></td>
+</tr>
+</tbody></table>
+<hr>
+</section>
+<section class="card "><h2>七、重大发布速递（WebSearch 补充，AI / 云计算 / 大数据）</h2>
+<table><thead><tr>
+<th>事件</th>
+<th>方向</th>
+<th>一句话说明</th>
+<th>来源</th>
+</tr></thead><tbody>
+<tr>
+<td>腾讯开源旗舰模型 Hy4</td>
+<td><span class="tag tag-ai">AI</span></td>
+<td>7700 亿参数，能看图看视频、会操作电脑，指令跟随/长文本/深度研究全面提升</td>
+<td><a href="https://www.ainewslog.com/blog/grok-daily-2026-11-21-zh">AI News Log</a></td>
+</tr>
+<tr>
+<td>阿里真武 V900 AI 芯片</td>
+<td><span class="tag tag-cloud">云计算</span><span class="tag tag-ai">AI</span></td>
+<td>明年一季度量产，训推一体，算力为上一代 3 倍、216GB 显存、1200GB/s 片间互联，超节点单集群扩至 50 万卡；AI 云收入同比 +53%</td>
+<td><a href="https://www.ainewslog.com/blog/grok-daily-2026-11-21-zh">AI News Log</a></td>
+</tr>
+<tr>
+<td>百度世界 2026「芯云模体」</td>
+<td><span class="tag tag-ai">AI</span><span class="tag tag-cloud">云计算</span></td>
+<td>昆仑芯 M100 上市、M300 明年推出；天池 1024 卡超节点 2027 上市（光引擎互联带宽 3 倍、支撑 5 万亿参数）；词元所大模型交易平台 + 文心 5.5 Flash 预览（2800 亿参数/100 万上下文）</td>
+<td><a href="https://m.10jqka.com.cn/20261121/c682068560.shtml">同花顺</a></td>
+</tr>
+<tr>
+<td>华为云创想者大会「Agentic Infra」</td>
+<td><span class="tag tag-ai">AI</span><span class="tag tag-cloud">云计算</span></td>
+<td>发布 AICS 灵渠智算集群、AMS Agentic 记忆存储、CCE VolcanoNext 智能调度、AgentSphere 智能体运行环境四件套</td>
+<td><a href="https://www.sz002575.com/news/jinshan24158/">中设股份/金山</a></td>
+</tr>
+<tr>
+<td>微软 USB4 RDMA 开发者预览</td>
+<td><span class="tag tag-ai">AI</span><span class="tag tag-other">性能</span></td>
+<td>多台 Win11 用 USB4 直连合跑大模型，3×128GB 跑 4bit 量化 2350 亿参数 Qwen3 约 18.5 token/s</td>
+<td><a href="https://www.ainewslog.com/blog/grok-daily-2026-11-21-zh">AI News Log</a></td>
+</tr>
+<tr>
+<td>Thinking Machines Inkling 2 Mini</td>
+<td><span class="tag tag-ai">AI</span></td>
+<td>26B 参数循环 Transformer，面向本地 AI 编程，多框架已支持</td>
+<td><a href="https://thinkingmachines.ai/news/inkling-2-mini/">Thinking Machines</a></td>
+</tr>
+<tr>
+<td>国产开源模型生态扩张</td>
+<td><span class="tag tag-ai">AI</span></td>
+<td>Kimi K3.1 Pro 放出全球最大开源权重；国产模型 OpenRouter 周 token 用量连续 29 周全球第一；美团 LongCat-2.5 验证全国产算力训练</td>
+<td><a href="https://chinadailybrief.com/publications/chinese-open-source-ai-models-expand-ecosystem-aee36baf">China Daily Brief</a></td>
+</tr>
+<tr>
+<td>Fixstars 日本上线 GLM-5.3 推理</td>
+<td><span class="tag tag-ai">AI</span></td>
+<td>NVFP4 4bit 量化，输入 ¥10.49 / 输出 ¥210 每百万 token，约为官方 API 的 1/20 与 1/3</td>
+<td><a href="https://jp.ibtimes.com/fixstars-adds-glm-53-its-japan-hosted-ai-inference-service-105304">IBTimes JP</a></td>
+</tr>
+<tr>
+<td>谷歌 Gemini 4 Argon</td>
+<td><span class="tag tag-ai">AI</span></td>
+<td>通用物理推理模型，面向机器人控制、Real2Sim 构建与迭代策略优化</td>
+<td><a href="https://www.infoq.cn/article/S4LH5Z9zcbLokm5uNSKR">InfoQ</a></td>
+</tr>
+<tr>
+<td>算电协同产业生态大会</td>
+<td><span class="tag tag-cloud">云计算</span></td>
+<td>成都召开，阿里称中国 AI 云市场 2025 年达 567 亿元，算力从"训练驱动"转向"训推协同、推理主导"</td>
+<td><a href="https://weibo.com/ttarticle/p/show?id=2309405367338013949991">微博</a></td>
+</tr>
+</tbody></table>
+<hr>
+</section>
+<section class="card "><h2>八、按方向速览</h2>
+<table><thead><tr>
+<th>方向</th>
+<th>重点条目</th>
+</tr></thead><tbody>
+<tr>
+<td><span class="tag tag-ai">**AI**</span></td>
+<td>数学界 GRH 宣称证明霸榜 HN（2318 分）+ AI 辅助证明讨论；Frostbite AI 设计 CPU 架构、Language Models Rewrite Own Weights；腾讯 Hy4（7700 亿参数开源）、Inkling 2 Mini（26B 循环 Transformer）、Gemini 4 Argon / Neon；GitHub Agent/Skills 霸榜（Claude-BugHunter、firecrawl、autoclip、superpowers、LoopForge）</td>
+</tr>
+<tr>
+<td><span class="tag tag-bigdata">**大数据**</span></td>
+<td>LinkedIn 用 Celeborn 将 Spark Shuffle 失败 750→20；Cloudflare D1 控制平面重构支持数百万库；Snowflake Expedition；pg_vectorsearch；GitHub：dbx、dbeaver、OpenSearch、pgvector；leijuan：Kafka Rust Client 1.0、PGX</td>
+</tr>
+<tr>
+<td><span class="tag tag-cloud">**云计算**</span></td>
+<td>华为云 Agentic Infra 四件套 + CloudRobo-WM1.2；百度天池 1024 卡超节点 + 词元所；阿里真武 V900（50 万卡集群）；亚马逊云 AgentCore 规模化；Azure 部署环境停用、Cloudflare 后量子 CA；GitHub：arcane</td>
+</tr>
+<tr>
+<td><span class="tag tag-java">**Java**</span></td>
+<td>GitHub 榜整体偏冷（keycloak +18、dbeaver +15、openjdk/jdk +10、OpenSearch +5、copilot-sdk +3）；java4shell 修复讨论仍在 OpenJDK 主线；InfoQ 英文 .NET 11 对照参考</td>
+</tr>
+<tr>
+<td><span class="tag tag-rust">**Rust**</span></td>
+<td>Rust 1.100.0；GitHub：rustdesk +250、dbx +159、rtk +104、jan +101、Antigravity-Manager +87、pgrust（Rust 重写 Postgres）；InfoQ：Discord 用 Zed gpui 重写客户端、Rewrite It In Idiomatic Rust；leijuan：Kafka Rust Client 1.0</td>
+</tr>
+<tr>
+<td><span class="tag tag-linux">**Linux**</span></td>
+<td>OpenBSD 8.0（硬件支持/安全/虚拟化增强）；leijuan：Kiri 轻量容器 Runtime；Brendan Gregg 站近期无更新</td>
+</tr>
+<tr>
+<td><span class="tag tag-other">**性能**</span></td>
+<td>Frostbite AI 设计 CPU 架构、Vibecoding 推理芯片、微软 USB4 RDMA 多机合跑大模型、NetWasm 0.10（C# on WASM 快过 Mono AOT）、rtk（token 降 60–90%）、Do-not-buy-RAM 类工程实践；Brendan Gregg 站近期无更新</td>
+</tr>
+<tr>
+<td><span class="tag tag-other">**其他**</span></td>
+<td>HN 数学日：GRH 宣称证明（2318 分）、Masullo 抢发（1459 分）、Tao/Aaronson 跟进；英伟达 SEC 调查与黄仁勋去留；GitHub：Ghost-Downloader-3、app-store-compliance、AFFiNE、LiberNT、Bend 2</td>
+</tr>
+</tbody></table>
+<hr>
+<footer>生成时间：2026-11-21 · 自动化任务 · 数据源均为公开可访问页面/API。</footer>
+</section>
+<section class="sources"><p>来源：GitHub Trending / Hacker News / InfoQ / leijuan / Brendan Gregg / 微博技术 · 检索补充：WebSearch</p></section>
+</div>
+</body>
+</html>
